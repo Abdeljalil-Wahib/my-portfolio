@@ -14,6 +14,16 @@
   padding: 120px 5% 40px;
   text-align: center;
   gap: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* The container for all text, buttons, and social links */
@@ -40,6 +50,7 @@
 .roleContainer {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
 }
 .roleWhite {
@@ -47,50 +58,55 @@
   font-weight: 700;
   color: white;
 }
-.rolePurple {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--neon-purple);
-  text-shadow: 0 0 15px rgb(255, 0, 255); /* Subtle text glow */
+
+.highlight {
+  color: #e600ff;
+}
+
+.typed-cursor {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #e600ff;
 }
 
 .bio {
+  color: #c7c7c7;
   margin-top: 1.5rem;
   font-size: 1.2rem;
-  color: #c7c7c7;
   max-width: 600px; /* Prevents the line from getting too long */
   line-height: 1.6;
 }
 
 /* Container for social icons and CV button */
 .actionsContainer {
+  width: 170px;
   margin-top: 2rem;
+  gap: 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
 }
 
 /* styles for your social icons here later */
 .socials {
+  width: 100%;
   display: flex;
-  /* flex-direction: column; */
-  align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  gap: 1.5rem;
 }
+
 .socials a {
-    /* Basic styling for now. We can add icons later. */
-    color: #ffffff;
+    color: var(--neon-purple);
     font-size: 1.5rem;
     transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
 }
 .socials a:hover {
     color: var(--neon-purple);
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .cvBtn {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding: 0.8rem 2rem;
   font-size: 1rem;
   font-weight: 600;
@@ -114,26 +130,23 @@
   height: 250px;
 }
 
-/* The glowing outline effect using a pseudo-element */
-.heroImageContainer::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  box-shadow: 
-    0 0 10px rgb(255, 0, 255),
-    0 0 20px rgb(255, 0, 255);
-  border-radius: 50%;
-  z-index: -1;
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 20px #e600ff, 0 0 40px #e600ff, 0 0 60px #e600ff;
+  }
+  50% {
+    box-shadow: 0 0 30px #e600ff, 0 0 60px #e600ff, 0 0 90px #e600ff;
+  }
+  100% {
+    box-shadow: 0 0 20px #e600ff, 0 0 40px #e600ff, 0 0 60px #e600ff;
+  }
 }
 
 .portraitImage {
   border-radius: 50%;
-  object-fit: cover;
+  animation: pulseGlow 3s infinite ease-in-out;
 }
-
 
 /*
   SECTION 2: DESKTOP STYLES
@@ -165,5 +178,8 @@
     width: 350px;
     height: 350px;
     flex-shrink: 0;
+  }
+  .roleContainer {
+    justify-content: left;
   }
 }

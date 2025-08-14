@@ -1,0 +1,7 @@
+.footer {
+    font-size: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--neon-purple);
+    text-shadow: 0 0 15px rgb(255, 0, 255); /* Subtle text glow */
+}

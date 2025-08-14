@@ -39,3 +39,72 @@
   color: var(--neon-purple);
   text-shadow: 0 0 5px var(--neon-purple);
 }
+
+.hamburger {
+  display: none; /* Hidden by default on desktop */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10; /* Ensures it's clickable above other elements */
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+.bar {
+  width: 2rem;
+  height: 0.25rem;
+  background: #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    position: absolute; /* Take it out of the normal flow */
+    right: 5%; /* Position it on the far right, aligned with page padding */
+    top: 50%; /* Center it vertically */
+    transform: translateY(-50%); /* Fine-tune the vertical centering */
+  }
+
+  .nav {
+    /* This transforms the nav into a slide-out menu */
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 70%; /* Menu takes up 70% of the screen width */
+    background: var(--darkgrey-bg); /* A slightly different dark color for the menu */
+    opacity: 99%;
+    
+    /* Layout for the links inside the menu */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    /* Hide it by default */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navOpen {
+    transform: translateX(0); /* This class slides the menu into view */
+  }
+
+  /* Make nav links bigger and stacked for mobile menu */
+  .nav a {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-left: 0; /* Remove the desktop margin */
+  }
+
+}

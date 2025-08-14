@@ -5,8 +5,9 @@
   --darkgrey-bg: #121212f8;
 }
 
-
 body {
+  height: 100vh;
+  overflow: hidden;
   background: var(--darkgrey-bg);
   font-family: Arial, Helvetica, sans-serif;
 }

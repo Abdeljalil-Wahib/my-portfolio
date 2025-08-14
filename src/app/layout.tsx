@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 import './globals.css';
 
 // This is the new way to handle <head> content in the App Router
@@ -19,7 +20,7 @@ export default function RootLayout({
       <body>
         <Header />
         <main>{children}</main> {/* Your page content will go here */}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );
