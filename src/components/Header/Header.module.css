@@ -1,0 +1,41 @@
+
+.header {
+  width: 100%;
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.logo  {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logoPurple {
+  color: var(--neon-purple);
+  margin-right: 10px;
+}
+
+.logoWhite {
+  color: #ffffff;
+}
+
+.navLink {
+  color: #e0e0e0;
+  text-decoration: none;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav .navLink:hover {
+  color: var(--neon-purple);
+  text-shadow: 0 0 5px var(--neon-purple);
+}

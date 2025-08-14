@@ -1,0 +1,169 @@
+
+/*
+  SECTION 1: MOBILE-FIRST STYLES (Default)
+  These styles apply to all screen sizes unless overridden in the media query.
+  We stack the content vertically and center everything.
+*/
+
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 120px 5% 40px;
+  text-align: center;
+  gap: 3rem;
+}
+
+/* The container for all text, buttons, and social links */
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content's children (like the CV button) */
+}
+
+.greeting {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0.5rem 0;
+  line-height: 1.1;
+}
+
+.roleContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.roleWhite {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+}
+.rolePurple {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--neon-purple);
+  text-shadow: 0 0 15px rgb(255, 0, 255); /* Subtle text glow */
+}
+
+.bio {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #c7c7c7;
+  max-width: 600px; /* Prevents the line from getting too long */
+  line-height: 1.6;
+}
+
+/* Container for social icons and CV button */
+.actionsContainer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* styles for your social icons here later */
+.socials {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  gap: 1rem;
+}
+.socials a {
+    /* Basic styling for now. We can add icons later. */
+    color: #ffffff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.socials a:hover {
+    color: var(--neon-purple);
+    transform: scale(1.1);
+}
+
+.cvBtn {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--neon-purple);
+  background-color: transparent;
+  border: 2px solid var(--neon-purple);
+  border-radius: 50px; /* Pill shape */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.cvBtn:hover {
+  box-shadow: 0 0 20px var(--neon-purple);
+  transform: translateY(-3px);
+}
+
+/* The circular portrait container */
+.heroImageContainer {
+  position: relative;
+  width: 250px;
+  height: 250px;
+}
+
+/* The glowing outline effect using a pseudo-element */
+.heroImageContainer::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  box-shadow: 
+    0 0 10px rgb(255, 0, 255),
+    0 0 20px rgb(255, 0, 255);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.portraitImage {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+/*
+  SECTION 2: DESKTOP STYLES
+*/
+
+@media (min-width: 992px) {
+  .heroSection {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    gap: 4rem;
+  }
+
+  .heroContent {
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  .actionsContainer {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .name {
+    font-size: 4.5rem;
+  }
+
+  .heroImageContainer {
+    width: 350px;
+    height: 350px;
+    flex-shrink: 0;
+  }
+}
