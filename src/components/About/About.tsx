@@ -1,28 +1,34 @@
-'use client';
-
+// 'use client';
 import styles from '@/components/About/About.module.css'
 import Image from 'next/image'
-import  { myWhyText, myJourneyText} from '@/utils/aboutContent'
+import Link from 'next/link';
+import  { myWhyText, myJourneyText, myPhilosophyText, whatImLearning, cta} from '@/utils/aboutContent'
 
 const About = () => {
     return (
         <section className={styles.about}>
             <div className={styles.textCard}>
                 <h2 className={styles.sectionTitle}>My Why</h2>
-                <p>"{ myWhyText }"</p>
+                <p className={styles.textContainer}>"{ myWhyText }"</p>
                 <h2 className={styles.sectionTitle}>My Journey</h2>
-                <p>"{ myJourneyText }"</p>
+                <p className={styles.textContainer}>"{ myJourneyText }"</p>
+                <h2 className={styles.sectionTitle}>My Philosophy</h2>
+                <p className={styles.textContainer}>"{ myPhilosophyText }"</p>
+                <h2 className={styles.sectionTitle}>What I'm Learning Next</h2>
+                <p className={styles.textContainer}>"{ whatImLearning }"</p>
+                <Link href="/portfolio">
+                    <button className={styles.viewProjectsBtn}>View My Projects</button>
+                </Link>
             </div>
 
             <div className={styles.gallery}>
                 <div className={styles.imageWrapper}>
-                    {/* <Image
-                        src={}
-                        alt=''
+                    <Image
+                        src="/images/cluster.jpeg"
+                        alt="A picture of my school"
                         fill
                         className={styles.galleryImg}
-                    
-                    /> */}
+                    />
                 </div>
             </div>
         </section>

@@ -1,25 +1,23 @@
-import type { Metadata } from 'next';
+'use client';
+import { AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import './globals.css';
-
-// This is the new way to handle <head> content in the App Router
-
-export const metadata: Metadata = {
-  title: 'Abdeljalil Wahib | Front-end Developer',
-  description: 'Portfolio of Abdeljalil Wahib, a passionate front-end developer.',
-};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
   return (
     <html lang="en">
       <body>
         <Header />
-        <main>{children}</main> {/* Your page content will go here */}
+        <AnimatePresence mode='wait'>
+        <main key={pathname}>{children}</main> {/* Your page content will go here */}
+        </AnimatePresence>
         <Footer />
       </body>
     </html>

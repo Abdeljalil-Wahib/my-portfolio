@@ -1,0 +1,97 @@
+.about {
+  margin-top: 2rem;
+  display: flex; /* Arrange columns side-by-side */
+  justify-content: space-between; /* Space between the two columns */
+  gap: 3rem; /* Space between text card and gallery */
+  padding: 4rem 2rem; /* Space inside the whole section */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.textCard {
+  flex: 1 1 50%; /* Take up ~50% of the width, shrink/grow if needed */
+  background: rgba(255, 255, 255, 0.03); /* Slight transparent dark background */
+  padding: 2rem; /* Space inside the card */
+  border-radius: 1rem; /* Rounded corners */
+  border: 1px solid rgba(230, 0, 255, 0.3); /* Subtle neon border */
+  box-shadow: 0 0 15px rgba(230, 0, 255, 0.2); /* Neon glow effect */
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.sectionTitle {
+  font-weight: 600;
+  color: var(--neon-purple); /* Neon pink/purple text color */
+  margin-bottom: .5rem; /* Space below the title */
+}
+
+.textContainer {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.gallery {
+  /* min-height: 100%; */
+  flex: 1 1 40%; /* Take ~40% width, adjusts with screen size */
+  display: flex; /* Stack images vertically */
+  flex-direction: column; /* Vertical layout */
+  justify-content: center;
+  gap: 1.5rem; /* Space between images */
+}
+
+.imageWrapper {
+  position: relative; /* For positioning the next/image fill mode */
+  width: 100%; /* Full container width */
+  aspect-ratio: 4 / 3; /* Maintain image shape */
+  border-radius: 0.75rem; /* Rounded corners */
+  overflow: hidden; /* Hide parts of image outside border */
+  border: 2px solid rgba(230, 0, 255, 0.3); /* Neon border */
+  box-shadow: 0 0 15px rgba(230, 0, 255, 0.2); /* Glow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+
+.viewProjectsBtn {
+  background-color: var(--neon-purple); /* your purple */
+  color: #f0f0f0; /* light text for contrast */
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.viewProjectsBtn:hover {
+  background-color: var(--darkgrey-bg);
+  transform: translateY(-2px);
+}
+
+.imageWrapper:hover {
+  transform: scale(1.02); /* Slight zoom on hover */
+  box-shadow: 0 0 20px rgba(230, 0, 255, 0.5); /* Stronger glow on hover */
+}
+
+.galleryImage {
+  object-fit: fill; /* Fill space without distortion */
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0; /* Start invisible */
+    transform: translateX(-20px); /* Slide from left */
+  }
+  to {
+    opacity: 1; /* End visible */
+    transform: translateX(0); /* At final position */
+  }
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 768px) {
+  .about {
+    flex-direction: column; /* Stack vertically */
+  }
+
+  .textCard, .gallery {
+    flex: 1 1 100%; /* Take full width */
+  }
+}

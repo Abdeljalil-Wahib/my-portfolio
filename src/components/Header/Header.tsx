@@ -32,10 +32,10 @@ const Header = () => {
         <div>
             <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}> 
                 <Link className={styles.navLink} href="/" onClick={handleLinkClick}>Home</Link>
-                <Link className={styles.navLink} href="/#about" onClick={handleLinkClick}>About</Link>
-                <Link className={styles.navLink} href="/#skills" onClick={handleLinkClick}>Skills</Link>
-                <Link className={styles.navLink} href="/#portfolio" onClick={handleLinkClick}>Portfolio</Link>
-                <Link className={styles.navLink} href="/#contact" onClick={handleLinkClick}>Contacts</Link>
+                <Link className={styles.navLink} href="/about" onClick={handleLinkClick}>About</Link>
+                <Link className={styles.navLink} href="/skills" onClick={handleLinkClick}>Skills</Link>
+                <Link className={styles.navLink} href="/portfolio" onClick={handleLinkClick}>Portfolio</Link>
+                <Link className={styles.navLink} href="/contact" onClick={handleLinkClick}>Contacts</Link>
             </nav>
         </div>
         </header>
