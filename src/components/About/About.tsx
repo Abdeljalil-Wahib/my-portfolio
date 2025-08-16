@@ -16,9 +16,14 @@ const About = () => {
                 <p className={styles.textContainer}>"{ myPhilosophyText }"</p>
                 <h2 className={styles.sectionTitle}>What I'm Learning Next</h2>
                 <p className={styles.textContainer}>"{ whatImLearning }"</p>
-                <Link href="/portfolio">
-                    <button className={styles.viewProjectsBtn}>View My Projects</button>
-                </Link>
+                <div className={styles.ctaBtns}>
+                    <Link href="/portfolio">
+                        <button className={styles.viewProjectsBtn}>View My Projects</button>
+                    </Link>
+                    <Link href="/skills">
+                        <button className={styles.viewFoundationBtn}>My Foundation</button>
+                    </Link>
+                </div>
             </div>
 
             <div className={styles.gallery}>

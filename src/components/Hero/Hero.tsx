@@ -47,6 +47,7 @@ const Hero = () => {
                     alt="A picture of me"
                     width={800}
                     height={600}
+                    priority
                 />
             </div>
         </section>
