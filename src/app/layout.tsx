@@ -13,7 +13,7 @@ export default function RootLayout({
   const pathname = usePathname();
   return (
     <html lang="en">
-      <body style={{ overflow: 'hidden' }}>
+      <body>
         <Header />
         <AnimatePresence mode='wait'>
         <main key={pathname}>{children}</main> {/* Your page content will go here */}

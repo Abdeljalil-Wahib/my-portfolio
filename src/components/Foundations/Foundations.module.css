@@ -1,0 +1,172 @@
+/* src/components/Foundations/Foundations.module.css */
+
+.foundationsPage {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  color: #e0e0e0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #d0bfff, #8a2be2);
+  /* -webkit-background-clip: text; */
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #a0a0a0;
+}
+
+.intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px auto;
+  line-height: 1.7;
+}
+
+.intro h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #d0bfff;
+}
+
+.skillsSection {
+  margin-bottom: 80px;
+}
+
+.skillsSection h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #8a2be2;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+/* --- Project Grid --- */
+.projectGrid {
+  display: grid;
+  gap: 60px;
+}
+
+.projectEntry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Alternate layout for every second project */
+.projectEntry:nth-child(even) {
+  grid-template-columns: 1fr 1fr;
+}
+
+.projectEntry:nth-child(even) .projectVisual {
+  order: 2;
+}
+
+.projectVisual {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.projectImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.projectVisual:hover .projectImage {
+  transform: scale(1.05);
+}
+
+
+.projectDescription h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #d0bfff;
+}
+
+.projectDescription p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.keyLearnings b {
+  color: #8a2be2;
+}
+
+/* --- Web Dev Section --- */
+.webIntro {
+  text-align: center;
+  max-width: 700px;
+  margin: -20px auto 40px auto;
+  font-size: 1.1rem;
+  color: #a0a0a0;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.techCategory h4 {
+  font-size: 1.3rem;
+  color: #d0bfff;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #555;
+  padding-bottom: 10px;
+}
+
+.techCategory ul {
+  list-style: none;
+  padding: 0;
+}
+
+.techCategory li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  position: relative;
+  padding-left: 20px;
+}
+
+.techCategory li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #8a2be2;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+
+  .skillsSection h2 {
+    font-size: 2rem;
+  }
+
+  .projectEntry,
+  .projectEntry:nth-child(even) {
+    grid-template-columns: 1fr; /* Stack columns on mobile */
+  }
+
+  .projectEntry:nth-child(even) .projectVisual {
+    order: 0; /* Reset order */
+  }
+}

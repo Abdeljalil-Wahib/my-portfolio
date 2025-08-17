@@ -33,7 +33,7 @@ const Header = () => {
                 <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
                     <Link className={styles.navLink} href="/" onClick={handleLinkClick}>Home</Link>
                     <Link className={styles.navLink} href="/about" onClick={handleLinkClick}>About</Link>
-                    <Link className={styles.navLink} href="/foundation" onClick={handleLinkClick}>Foundation</Link>
+                    <Link className={styles.navLink} href="/foundations" onClick={handleLinkClick}>Foundations</Link>
                     <Link className={styles.navLink} href="/portfolio" onClick={handleLinkClick}>Portfolio</Link>
                     <Link className={styles.navLink} href="/contact" onClick={handleLinkClick}>Contacts</Link>
                     <a
