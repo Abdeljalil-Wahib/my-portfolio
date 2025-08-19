@@ -1,18 +1,40 @@
 @import "tailwindcss";
 
 :root {
+  /* Background Gradient */
+  --bg-gradient-start: #2a1e47;
+  --bg-gradient-end: #000000;
+  
+  /* Text Colors */
   --neon-purple: rgb(255, 0, 255);
-  --darkgrey-bg: #121212f8;
-
-  --color-bg-accent: #3B3B3B;
-  --color-text-primary: #F5F5F5;
-  --color-text-secondary: #B3B3B3;
-  --color-accent: #8B5CF6;
-  --color-accent-light: #C084FC;
+  --text-primary: #E9D8FD; /* For main text */
+  --text-secondary: #a99bbd; /* For subtitles or less important text */
+  
+  /* Accent Colors */
+  --accent-primary: #C0A5FA;   /* For buttons and key highlights */
+  --accent-secondary: #9A61F4;  /* For hover effects and secondary elements */
+  --accent-border: #4f46e5;    /* A deeper color for borders */
 }
 
 body {
-  height: 100vh;
-  background: var(--darkgrey-bg);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-gradient-end); /* Fallback for browsers that don't support the gradient */
+  background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-primary);
+  min-height: 100vh;
 }
+
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+

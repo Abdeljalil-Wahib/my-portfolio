@@ -8,9 +8,12 @@
   top: 0;
   left: 0;
   z-index: 1000;
+  backdrop-filter: blur(6px); /* optional glassmorphism */
 }
 
-.logo  {
+
+
+.logo  {  
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
@@ -22,11 +25,10 @@
 }
 
 .logoWhite {
-  color: #ffffff;
+  color: var(--text-secondary);
 }
 
 .navLink {
-  color: #e0e0e0;
   text-decoration: none;
   margin-left: 2rem;
   font-size: 1rem;
@@ -34,9 +36,9 @@
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.nav .navLink:hover {
-  color: var(--neon-purple);
-  text-shadow: 0 0 5px var(--neon-purple);
+.navLink:hover {
+  color: white;
+  text-shadow: 0 0 5px white;
 }
 
 .resume {

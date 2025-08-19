@@ -17,7 +17,7 @@ const About = () => {
                 <h2 className={styles.sectionTitle}>What I'm Learning Next</h2>
                 <p className={styles.textContainer}>"{ whatImLearning }"</p>
                 <div className={styles.ctaBtns}>
-                    <Link href="/foundation">
+                    <Link href="/foundations">
                         <button className={styles.viewFoundationBtn}>My Foundation</button>
                     </Link>
                     <Link href="/portfolio">

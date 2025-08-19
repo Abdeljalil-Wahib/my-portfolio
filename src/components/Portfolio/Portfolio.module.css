@@ -114,6 +114,11 @@
   font-size: 1.05rem;
 }
 
+.frontContent h3 {
+  color: var(--text-primary);
+
+}
+
 .showMoreBtn {
   text-decoration: none;
   padding: 10px 20px;
@@ -122,11 +127,12 @@
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #1a1a1a;
+  background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-secondary);
 }
+
 .showMoreBtn:hover {
-  background-color: var(--neon-purple);
+  color: var(--neon-purple);
   transform: translateY(-2px);
 }
 
@@ -140,20 +146,25 @@
 }
 
 .demoBtn {
-  background-color: white;
-  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-secondary);
 }
+
 .demoBtn:hover {
-  background-color: var(--neon-purple);
+  color: var(--neon-purple);
   transform: translateY(-2px);
 }
 
 .githubBtn {
-  background-color: white;
-  color: #000000;
+  background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-secondary);
 }
+
 .githubBtn:hover {
-  background-color: var(--neon-purple);
+  color: var(--neon-purple);
+  transform: translateY(-2px);
 }
 
 .navigationControls {

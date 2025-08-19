@@ -16,7 +16,9 @@ export default function RootLayout({
       <body>
         <Header />
         <AnimatePresence mode='wait'>
-        <main key={pathname}>{children}</main> {/* Your page content will go here */}
+        <main key={pathname}>
+          {children}
+        </main>
         </AnimatePresence>
         <Footer />
       </body>

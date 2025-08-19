@@ -5,6 +5,8 @@
   margin: 0 auto;
   padding: 80px 20px;
   color: #e0e0e0;
+  /* ✨ FIX: Prevents horizontal scrollbar during animation */
+  overflow-x: hidden;
 }
 
 .header {
@@ -16,7 +18,8 @@
   font-size: 3rem;
   margin-bottom: 10px;
   background: linear-gradient(90deg, #d0bfff, #8a2be2);
-  /* -webkit-background-clip: text; */
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -44,10 +47,15 @@
 
 .skillsSection h2 {
   font-size: 2.5rem;
-  text-align: center;
   margin-bottom: 40px;
+  /* ✨ FIX: Use flexbox for robust centering of the title */
+  display: flex;
+  justify-content: center;
+}
+
+/* This inner span allows the border to fit the text content perfectly */
+.skillsSection h2 span {
   border-bottom: 2px solid #8a2be2;
-  display: inline-block;
   padding-bottom: 10px;
 }
 
@@ -64,11 +72,6 @@
   align-items: center;
 }
 
-/* Alternate layout for every second project */
-.projectEntry:nth-child(even) {
-  grid-template-columns: 1fr 1fr;
-}
-
 .projectEntry:nth-child(even) .projectVisual {
   order: 2;
 }
@@ -77,6 +80,17 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.projectVideo {
+  width: 100%;
+  height: auto;
+  display: block; /* Removes bottom space under video */
+  transition: transform 0.4s ease;
+}
+
+.projectVisual:hover .projectVideo {
+  transform: scale(1.05);
 }
 
 .projectImage {
@@ -89,7 +103,6 @@
 .projectVisual:hover .projectImage {
   transform: scale(1.05);
 }
-
 
 .projectDescription h3 {
   font-size: 1.8rem;

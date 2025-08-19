@@ -1,5 +1,5 @@
-.about {
-  height: 100vh;
+  .about {
+  min-height: calc(100vh - 80px);
   margin-top: 1.5rem;
   display: flex; /* Arrange columns side-by-side */
   justify-content: space-between; /* Space between the two columns */
@@ -10,7 +10,6 @@
 
 .textCard {
   flex: 1 1 50%; /* Take up ~50% of the width, shrink/grow if needed */
-  background: rgba(255, 255, 255, 0.03); /* Slight transparent dark background */
   padding: 2rem; /* Space inside the card */
   border-radius: 1rem; /* Rounded corners */
   border: 1px solid rgba(230, 0, 255, 0.3); /* Subtle neon border */
@@ -71,7 +70,8 @@
 }
 
 .viewProjectsBtn:hover {
-  background-color: var(--darkgrey-bg);
+  background-color: var(--accent-bolder);
+  color: var(--neon-purple);
   transform: translateY(-2px);
 }
 
@@ -88,7 +88,8 @@
 }
 
 .viewFoundationBtn:hover {
-  background-color: var(--darkgrey-bg);
+  color: var(--neon-purple);
+  background-color: var(--accent-bolder);
   transform: translateY(-2px);
 }
 
