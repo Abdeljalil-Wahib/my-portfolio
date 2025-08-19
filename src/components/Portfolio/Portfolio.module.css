@@ -47,7 +47,6 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
 
 .frontImg {
@@ -63,7 +62,11 @@
 
 .frontContent {
   width: 100%;
+  height: 100%;
   padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   z-index: 1;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
 }
@@ -115,8 +118,7 @@
 }
 
 .frontContent h3 {
-  color: var(--text-primary);
-
+  color: white;
 }
 
 .showMoreBtn {
@@ -127,6 +129,7 @@
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  align-self: flex-start;
   background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
   color: var(--text-secondary);
 }

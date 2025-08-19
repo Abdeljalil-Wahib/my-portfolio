@@ -10,7 +10,7 @@ const projects = [
         title: "SnapShop - E-commerce SPA",
         thumbnail: "/images/snapshop-thumbnail.png", // Make sure to add an image with this name to your /public/images folder
         description: "A full-featured, responsive e-commerce single-page application built from the ground up with Next.js and Redux Toolkit. This project showcases modern frontend architecture and complex state management.",
-        liveDemo: "#", // <-- IMPORTANT: Replace '#' with your actual live demo URL
+        liveDemo: "https://snapshop-ajwahib.vercel.app/",
         github: "https://github.com/Abdeljalil-Wahib/Ecom-SPA",
     },
     {
@@ -110,11 +110,25 @@ const Portfolio = () => {
                                     exit="exit"
                                     style={{ '--bg-image': `url(${currentProject.thumbnail})` } as React.CSSProperties}
                                 >
-                                   <div className={styles.details}>
+                                    <div className={styles.details}>
                                         <p>{currentProject.description}</p>
                                         <div className={styles.buttons}>
-                                            <a href={currentProject.liveDemo} className={styles.demoBtn}>Live Demo</a>
-                                            <a href={currentProject.github} className={styles.githubBtn}>Github</a>
+                                            <a
+                                                href={currentProject.liveDemo}
+                                                className={styles.demoBtn}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Live Demo
+                                            </a>
+                                            <a
+                                                href={currentProject.github}
+                                                className={styles.githubBtn}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Github
+                                            </a>
                                         </div>
                                     </div>
                                 </motion.div>
