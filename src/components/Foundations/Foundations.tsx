@@ -48,7 +48,7 @@ const Foundations = () => {
   return (
     <LazyMotion features={domAnimation}>
       <main className={styles.foundationsPage}>
-        <motion.header 
+        <motion.header
           className={styles.header}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,7 +95,14 @@ const Foundations = () => {
               </div>
               <div className={styles.projectEntry}>
                 <div className={styles.projectVisual}>
-                  <Image src="/images/fractol-placeholder.jpg" alt="fract-ol Project Screenshot" width={600} height={400} className={styles.projectImage} />
+                  <video
+                    className={styles.projectVideo}
+                    autoPlay loop muted playsInline
+                    poster="/images/fractol.png"
+                  >
+                    <source src="/videos/fractol.webm" type="video/webm" />
+                    <source src="/videos/fractol.mp4" type="video/mp4" />
+                  </video>
                 </div>
                 <div className={styles.projectDescription}>
                   <h3>fract-ol - Fractal Renderer</h3>
@@ -111,13 +118,13 @@ const Foundations = () => {
           <AnimatedSection variants={slideInLeft} amount={0.8}>
             <h2><span>Modern Web Application Development</span></h2>
           </AnimatedSection>
-          
+
           <AnimatedSection variants={slideInRight} amount={0.1}>
             <div>
               <p className={styles.webIntro}>
                 I apply the same rigor and problem-solving mindset from my low-level work to build modern, intuitive, and performant web applications.
               </p>
-              <motion.div 
+              <motion.div
                 className={styles.techGrid}
                 variants={staggerContainer}
                 initial="initial"

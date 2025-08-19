@@ -7,16 +7,16 @@ import { useMediaQuery } from "@/utils/useMediaQuery";
 
 const projects = [
     {
-        title: "Project One",
-        thumbnail: "/images/cluster.jpeg",
-        description: "This is a detailed description for Project One, explaining its purpose, the technologies used, and the problems it solves.",
-        liveDemo: "#",
-        github: "#",
+        title: "SnapShop - E-commerce SPA",
+        thumbnail: "/images/snapshop-thumbnail.png", // Make sure to add an image with this name to your /public/images folder
+        description: "A full-featured, responsive e-commerce single-page application built from the ground up with Next.js and Redux Toolkit. This project showcases modern frontend architecture and complex state management.",
+        liveDemo: "#", // <-- IMPORTANT: Replace '#' with your actual live demo URL
+        github: "https://github.com/Abdeljalil-Wahib/Ecom-SPA",
     },
     {
-        title: "Project Two",
-        thumbnail: "/images/cluster.jpeg",
-        description: "This is a detailed description for Project Two, highlighting its unique features and the development process.",
+        title: "Coming Soon...",
+        thumbnail: "/images/cluster.jpeg", // Using one of your existing placeholder images
+        description: "More projects will be added here soon. Stay tuned for exciting developments and showcases of technical skill.",
         liveDemo: "#",
         github: "#",
     },
@@ -126,7 +126,6 @@ const Portfolio = () => {
                                     animate={isMobile ? "stacked" : revealState}
                                     exit="exit"
                                 >
-                                    {/* ✨ FIX: Updated Image component props */}
                                     <Image
                                         src={currentProject.thumbnail}
                                         alt={currentProject.title}
