@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Interactive Personal Portfolio
+This is a dynamic and fully responsive personal portfolio website built with Next.js and Framer Motion. 
+It's designed to showcase a diverse range of projects, from web applications to interactive 3D models, in a visually engaging and animated interface.
 
-## Getting Started
+Live Site: portfolio.ajwahib.vercel.app
 
-First, run the development server:
+✨ Key Features
+Animated Interface: A custom, card-based UI with fluid animations and transitions powered by Framer Motion.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Dynamic Content: The portfolio cards conditionally render different types of media, including:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Interactive 3D models via an embedded Sketchfab viewer.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+High-resolution image renders.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Standard project descriptions with links to live demos and source code.
 
-## Learn More
+Fully Responsive: A mobile-first design that provides a seamless experience on all devices, from phones to desktops.
 
-To learn more about Next.js, take a look at the following resources:
+Versatile Showcase: The structure is built to handle a wide variety of project types, showcasing skills in web development, 3D art, and systems programming.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Optimized Performance: Built with Next.js for fast page loads, image optimization, and excellent SEO.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🛠️ Tech Stack
+Framework: Next.js
 
-## Deploy on Vercel
+Library: React
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Language: TypeScript
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Animation: Framer Motion
+
+Styling: CSS Modules
+
+Icons: React Icons
+
+Deployment: Vercel
