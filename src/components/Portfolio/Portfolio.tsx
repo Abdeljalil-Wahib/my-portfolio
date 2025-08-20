@@ -5,7 +5,7 @@ import { useState } from 'react';
 import NavigationControls from "@/utils/NavigationControls";
 import { useMediaQuery } from "@/utils/useMediaQuery";
 import { FaReact, FaSass } from 'react-icons/fa';
-import { SiNextdotjs, SiRedux, SiC, SiBlender } from 'react-icons/si';
+import { SiNextdotjs, SiRedux, SiC} from 'react-icons/si';
 import { IoLogoHtml5, IoLogoCss3, IoLogoJavascript } from 'react-icons/io5';
 
 const projects = [

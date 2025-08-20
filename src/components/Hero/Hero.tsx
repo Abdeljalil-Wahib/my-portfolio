@@ -9,11 +9,11 @@ const Hero = () => {
         <section className={styles.heroSection}>
             <div className={styles.heroContent}>
                 <div className={styles.textContent}>
-                    <h2 className={styles.greeting}>Hello, I'm</h2>
+                    <h2 className={styles.greeting}>Hello, I&apos;m</h2>
                     <h1 className={styles.name}>Abdeljalil Wahib</h1>
                     <div className={styles.roleContainer}>
                         <h2 className={styles.roleWhite}>
-                            And I'm a{' '}
+                            And I&apos;m a{' '}
                             <span className={styles.highlight}>
                                 <Typewriter
                                     words={[
@@ -31,7 +31,7 @@ const Hero = () => {
                             </span>
                         </h2>
                     </div>
-                    <p className={styles.bio}>I'm a Web Developer and Software Engineering student at 42, passionate about creating interactive and efficient web applications while continuously expanding my expertise in modern web technologies and problem-solving.</p>
+                    <p className={styles.bio}>I&apos;m a Web Developer and Software Engineering student at 42, passionate about creating interactive and efficient web applications while continuously expanding my expertise in modern web technologies and problem-solving.</p>
                 </div>
                 <div className={styles.actionsContainer}>
                     <div className={styles.socials}>

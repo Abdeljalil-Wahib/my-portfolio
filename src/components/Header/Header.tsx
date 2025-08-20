@@ -41,7 +41,7 @@ const Header = () => {
                         download="Abdeljalil-Wahib-CV.pdf"
                         onClick={handleLinkClick}
                     >
-                        Let's Work Together
+                        Let&apos;s Work Together
                     </a>
                 </nav>
             </div>

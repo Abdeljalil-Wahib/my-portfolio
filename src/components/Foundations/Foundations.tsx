@@ -1,12 +1,9 @@
-// src/components/Foundations/Foundations.tsx
 'use client';
 
 import styles from './Foundations.module.css';
-import Image from 'next/image';
 import { motion, LazyMotion, domAnimation, Variants, useInView } from 'framer-motion';
-import { useRef } from 'react'; // ✨ Import useRef
+import { useRef } from 'react';
 
-// --- Animation Variants (no changes) ---
 const slideInLeft: Variants = {
   initial: { x: -100, opacity: 0 },
   animate: { x: 0, opacity: 1, transition: { duration: 0.7, ease: [0.6, 0.05, 0.01, 0.9] } },
@@ -27,7 +24,6 @@ const staggerContainer: Variants = {
   },
 };
 
-// ✨ Create a reusable component to handle the animation logic
 const AnimatedSection = ({ children, variants, amount = 0.5 }: { children: React.ReactNode, variants: Variants, amount?: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount });
@@ -128,7 +124,7 @@ const Foundations = () => {
                 className={styles.techGrid}
                 variants={staggerContainer}
                 initial="initial"
-                animate="animate" // Animate stagger automatically when parent is in view
+                animate="animate"
               >
                 <motion.div className={styles.techCategory} variants={fadeIn}>
                   <h4>Languages</h4>

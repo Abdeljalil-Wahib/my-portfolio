@@ -4,6 +4,6 @@ export const myJourneyText = "My tech journey started in 3D modeling and interac
 
 export const myPhilosophyText = "I learn by doing, tackling challenges head-on, and breaking complex problems into manageable steps. I focus on building practical solutions first, refining them along the way. Coding for me isn't just about writing lines — it's about understanding systems, thinking ahead, and creating tools and experiences that work seamlessly. I thrive when I combine logic with creativity, keeping the end goal in sight while staying open to learning at every step."
 
-export const whatImLearning = "Right now, I’m diving deeper into backend development with Node.js and Express, building solid APIs and mastering server-side logic. At the same time, I’m exploring UI/UX enhancements—especially animations and interactive experiences—with Framer Motion. Every project is a chance to experiment, improve, and create something that’s both functional and enjoyable to use."
+export const whatImLearning = "Right now, I'm diving deeper into backend development with Node.js and Express, building solid APIs and mastering server-side logic. At the same time, I'm exploring UI/UX enhancements—especially animations and interactive experiences—with Framer Motion. Every project is a chance to experiment, improve, and create something that's both functional and enjoyable to use."
 
-export const cta = "I’m passionate about turning ideas into reality through thoughtful design and solid code. Curious to see my work in action?"
+export const cta = "I'm passionate about turning ideas into reality through thoughtful design and solid code. Curious to see my work in action?"
