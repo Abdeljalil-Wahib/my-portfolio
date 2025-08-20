@@ -16,17 +16,22 @@ const Hero = () => {
                             And I'm a{' '}
                             <span className={styles.highlight}>
                                 <Typewriter
-                                    words={['Front-End Developer']}
-                                    loop={0}
+                                    words={[
+                                        'Web Developer',
+                                        'Full-Stack Enthusiast',
+                                        'Software Engineering Student @ 1337'
+                                    ]}
+                                    loop={0} // 0 means infinite loop
                                     cursor
                                     cursorStyle="_"
                                     typeSpeed={70}
                                     deleteSpeed={50}
+                                    delaySpeed={1500} // wait 1.5s before deleting
                                 />
                             </span>
                         </h2>
                     </div>
-                    <p className={styles.bio}>Hi! i'm Abdeljalil Wahib, a passionate front-end Developer specializing in translating design concepts into seamless and interactive web experiences.</p>
+                    <p className={styles.bio}>I'm a Web Developer and Software Engineering student at 42, passionate about creating interactive and efficient web applications while continuously expanding my expertise in modern web technologies and problem-solving.</p>
                 </div>
                 <div className={styles.actionsContainer}>
                     <div className={styles.socials}>
@@ -38,7 +43,13 @@ const Hero = () => {
                         </a>
                     </div>
                 </div>
-                <button className={styles.cvBtn}>Download CV</button>
+                <a
+                    href="resume.pdf"
+                    download="abdeljalil-wahib-resume.pdf"
+                    className={styles.cvBtn}
+                >
+                    Download CV
+                </a>
             </div>
             <div className={styles.heroImageContainer}>
                 <Image
@@ -47,6 +58,7 @@ const Hero = () => {
                     alt="A picture of me"
                     width={800}
                     height={600}
+                    quality={100}
                     priority
                 />
             </div>

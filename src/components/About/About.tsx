@@ -32,6 +32,8 @@ const About = () => {
                         src="/images/cluster.jpeg"
                         alt="A picture of my school"
                         fill
+                        priority
+                        quality={100}
                         className={styles.galleryImg}
                     />
                 </div>

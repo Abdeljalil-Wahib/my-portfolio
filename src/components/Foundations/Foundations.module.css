@@ -1,11 +1,8 @@
-/* src/components/Foundations/Foundations.module.css */
-
 .foundationsPage {
   max-width: 1100px;
   margin: 0 auto;
   padding: 80px 20px;
   color: #e0e0e0;
-  /* ✨ FIX: Prevents horizontal scrollbar during animation */
   overflow-x: hidden;
 }
 
@@ -25,7 +22,7 @@
 
 .subtitle {
   font-size: 1.2rem;
-  color: #a0a0a0;
+  color: var(--text-secondary);
 }
 
 .intro {
@@ -48,18 +45,15 @@
 .skillsSection h2 {
   font-size: 2.5rem;
   margin-bottom: 40px;
-  /* ✨ FIX: Use flexbox for robust centering of the title */
   display: flex;
   justify-content: center;
 }
 
-/* This inner span allows the border to fit the text content perfectly */
 .skillsSection h2 span {
   border-bottom: 2px solid #8a2be2;
   padding-bottom: 10px;
 }
 
-/* --- Project Grid --- */
 .projectGrid {
   display: grid;
   gap: 60px;
@@ -85,7 +79,7 @@
 .projectVideo {
   width: 100%;
   height: auto;
-  display: block; /* Removes bottom space under video */
+  display: block;
   transition: transform 0.4s ease;
 }
 
@@ -125,7 +119,7 @@
   max-width: 700px;
   margin: -20px auto 40px auto;
   font-size: 1.1rem;
-  color: #a0a0a0;
+  color: var(--text-secondary);
 }
 
 .techGrid {
@@ -164,7 +158,6 @@
   color: #8a2be2;
 }
 
-/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
   .header h1 {
     font-size: 2.5rem;
@@ -176,10 +169,10 @@
 
   .projectEntry,
   .projectEntry:nth-child(even) {
-    grid-template-columns: 1fr; /* Stack columns on mobile */
+    grid-template-columns: 1fr;
   }
 
   .projectEntry:nth-child(even) .projectVisual {
-    order: 0; /* Reset order */
+    order: 0;
   }
 }

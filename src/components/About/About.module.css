@@ -1,26 +1,26 @@
   .about {
   min-height: calc(100vh - 80px);
   margin-top: 1.5rem;
-  display: flex; /* Arrange columns side-by-side */
-  justify-content: space-between; /* Space between the two columns */
-  gap: 3rem; /* Space between text card and gallery */
-  padding: 4rem 2rem; /* Space inside the whole section */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 4rem 2rem;
+  flex-wrap: wrap;
 }
 
 .textCard {
-  flex: 1 1 50%; /* Take up ~50% of the width, shrink/grow if needed */
-  padding: 2rem; /* Space inside the card */
-  border-radius: 1rem; /* Rounded corners */
-  border: 1px solid rgba(230, 0, 255, 0.3); /* Subtle neon border */
-  box-shadow: 0 0 15px rgba(230, 0, 255, 0.2); /* Neon glow effect */
+  flex: 1 1 50%;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(230, 0, 255, 0.3);
+  box-shadow: 0 0 15px rgba(230, 0, 255, 0.2);
   animation: fadeInLeft 0.8s ease-out forwards;
 }
 
 .sectionTitle {
   font-weight: 600;
-  color: var(--neon-purple); /* Neon pink/purple text color */
-  margin-bottom: .5rem; /* Space below the title */
+  color: var(--neon-purple);
+  margin-bottom: .5rem;
 }
 
 .textContainer {
@@ -29,37 +29,34 @@
 }
 
 .gallery {
-  /* min-height: 100%; */
-  flex: 1 1 40%; /* Take ~40% width, adjusts with screen size */
-  display: flex; /* Stack images vertically */
-  flex-direction: column; /* Vertical layout */
+  flex: 1 1 40%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 1.5rem; /* Space between images */
+  gap: 1.5rem;
 }
 
 .imageWrapper {
-  position: relative; /* For positioning the next/image fill mode */
-  width: 100%; /* Full container width */
-  aspect-ratio: 4 / 3; /* Maintain image shape */
-  border-radius: 0.75rem; /* Rounded corners */
-  overflow: hidden; /* Hide parts of image outside border */
-  border: 2px solid rgba(230, 0, 255, 0.3); /* Neon border */
-  box-shadow: 0 0 15px rgba(230, 0, 255, 0.2); /* Glow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 2px solid rgba(230, 0, 255, 0.3);
+  box-shadow: 0 0 15px rgba(230, 0, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .ctaBtns{
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
-  gap: 20px; /* Adjust spacing between buttons */
-  margin-top: 40px; /* Space above the buttons */
-  flex-wrap: wrap; /* Allows buttons to stack on small screens */
+  gap: 20px;
+  margin-top: 40px;
+  flex-wrap: wrap;
 }
 
 .viewProjectsBtn {
-  background-color: var(--neon-purple); /* your purple */
-  color: #f0f0f0; /* light text for contrast */
+  background-color: var(--neon-purple);
+  color: #f0f0f0;
   margin-top: 0.75rem;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -76,8 +73,8 @@
 }
 
 .viewFoundationBtn {
-  background-color: var(--neon-purple); /* your purple */
-  color: #f0f0f0; /* light text for contrast */
+  background-color: var(--neon-purple);
+  color: #f0f0f0;
   margin-top: 0.75rem;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -95,32 +92,31 @@
 
 
 .imageWrapper:hover {
-  transform: scale(1.02); /* Slight zoom on hover */
-  box-shadow: 0 0 20px rgba(230, 0, 255, 0.5); /* Stronger glow on hover */
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(230, 0, 255, 0.5);
 }
 
 .galleryImage {
-  object-fit: fill; /* Fill space without distortion */
+  object-fit: fill;
 }
 
 @keyframes fadeInLeft {
   from {
-    opacity: 0; /* Start invisible */
-    transform: translateX(-20px); /* Slide from left */
+    opacity: 0;
+    transform: translateX(-20px);
   }
   to {
-    opacity: 1; /* End visible */
-    transform: translateX(0); /* At final position */
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-/* Responsive: stack columns on small screens */
 @media (max-width: 768px) {
   .about {
-    flex-direction: column; /* Stack vertically */
+    flex-direction: column;
   }
 
   .textCard, .gallery {
-    flex: 1 1 100%; /* Take full width */
+    flex: 1 1 100%;
   }
 }

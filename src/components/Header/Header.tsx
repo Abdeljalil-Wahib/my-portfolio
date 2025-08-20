@@ -35,10 +35,9 @@ const Header = () => {
                     <Link className={styles.navLink} href="/about" onClick={handleLinkClick}>About</Link>
                     <Link className={styles.navLink} href="/foundations" onClick={handleLinkClick}>Foundations</Link>
                     <Link className={styles.navLink} href="/portfolio" onClick={handleLinkClick}>Portfolio</Link>
-                    <Link className={styles.navLink} href="/contact" onClick={handleLinkClick}>Contacts</Link>
                     <a
                         className={styles.resume}
-                        href="/Abdeljalil-Wahib-CV.pdf"
+                        href="/resume.pdf"
                         download="Abdeljalil-Wahib-CV.pdf"
                         onClick={handleLinkClick}
                     >

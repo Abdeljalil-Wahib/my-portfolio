@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  backdrop-filter: blur(6px); /* optional glassmorphism */
+  backdrop-filter: blur(6px);
 }
 
 
@@ -56,7 +56,7 @@
 }
 
 .hamburger {
-  display: none; /* Hidden by default on desktop */
+  display: none;
   flex-direction: column;
   justify-content: space-around;
   width: 2rem;
@@ -65,7 +65,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10; /* Ensures it's clickable above other elements */
+  z-index: 10;
 }
 
 .hamburger:focus {
@@ -83,45 +83,41 @@
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
-    position: absolute; /* Take it out of the normal flow */
-    right: 5%; /* Position it on the far right, aligned with page padding */
-    top: 50%; /* Center it vertically */
-    transform: translateY(-50%); /* Fine-tune the vertical centering */
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
   }
   
   .resume {
     color: var(--neon-purple);
   }
   .nav {
-    /* This transforms the nav into a slide-out menu */
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
-    width: 70%; /* Menu takes up 70% of the screen width */
-    background: var(--darkgrey-bg); /* A slightly different dark color for the menu */
+    width: 70%;
+    background: var(--darkgrey-bg);
     opacity: 99%;
     
-    /* Layout for the links inside the menu */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
 
-    /* Hide it by default */
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
   }
 
   .navOpen {
-    transform: translateX(0); /* This class slides the menu into view */
+    transform: translateX(0);
   }
 
-  /* Make nav links bigger and stacked for mobile menu */
   .nav a {
     font-size: 1.5rem;
-    margin-left: 0; /* Remove the desktop margin */
+    margin-left: 0;
   }
 
 }

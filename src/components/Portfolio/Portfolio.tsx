@@ -4,23 +4,84 @@ import Image from 'next/image';
 import { useState } from 'react';
 import NavigationControls from "@/utils/NavigationControls";
 import { useMediaQuery } from "@/utils/useMediaQuery";
+import { FaReact, FaSass } from 'react-icons/fa';
+import { SiNextdotjs, SiRedux, SiC, SiBlender } from 'react-icons/si';
+import { IoLogoHtml5, IoLogoCss3, IoLogoJavascript } from 'react-icons/io5';
 
 const projects = [
     {
         title: "SnapShop - E-commerce SPA",
-        thumbnail: "/images/snapshop-thumbnail.png", // Make sure to add an image with this name to your /public/images folder
+        thumbnail: "/images/snapshop-thumbnail.png",
         description: "A full-featured, responsive e-commerce single-page application built from the ground up with Next.js and Redux Toolkit. This project showcases modern frontend architecture and complex state management.",
         liveDemo: "https://snapshop-ajwahib.vercel.app/",
         github: "https://github.com/Abdeljalil-Wahib/Ecom-SPA",
+        tech: ['nextjs', 'react', 'redux', 'sass'],
+        cardType: 'landscape',
     },
     {
-        title: "Coming Soon...",
-        thumbnail: "/images/cluster.jpeg", // Using one of your existing placeholder images
-        description: "More projects will be added here soon. Stay tuned for exciting developments and showcases of technical skill.",
+        title: "Frontend Mentor Challenges",
+        thumbnail: "/images/frontend-mentor-thumbnail.png",
+        description: "A collection of pixel-perfect UI challenges from Frontend Mentor, demonstrating a strong command of responsive design principles, HTML, CSS, and JavaScript to precisely match professional designs.",
+        liveDemo: "https://www.frontendmentor.io/profile/Ajwahib95/solutions",
+        github: "#",
+        tech: ['html', 'css', 'javascript'],
+    },
+    {
+        title: "Minishell - A Custom Shell",
+        thumbnail: "/images/minishell-thumbnail.png",
+        description: "A custom implementation of a command-line shell in C. Features include parsing of complex commands, I/O redirection, pipes for inter-process communication, and signal handling (Ctrl-C, Ctrl-\\).",
+        liveDemo: "#",
+        github: "https://github.com/Abdeljalil-Wahib/minishell",
+        tech: ['c'],
+    },
+    {
+        title: "Blender Models",
+        thumbnail: "/images/3dmodel-thumbnail.png",
+        description: "A showcase of 3D models and scenes created with Blender...",
         liveDemo: "#",
         github: "#",
+        tech: ['blender'],
+        cardType: 'landscape',
+        embedCode: `<iframe title="Leona_shield" frameBorder="0" allowFullScreen mozAllowFullScreen="true" webkitAllowFullScreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/b99e9bf599c64e398dec0e139d88f043/embed"></iframe>`
+    },
+    {
+        title: "Retro Rewind - Blender Scene",
+        thumbnail: "/images/retro-rewind-thumbnail.png",
+        description: "A detailed Retro gaming room scene rendered in Blender, focusing on realistic materials and atmospheric lighting.",
+        liveDemo: "#",
+        github: "#",
+        tech: ['blender'],
+        cardType: 'landscape',
+        imageRender: "/images/retro-rewind.png"
     },
 ];
+
+interface TechIconProps {
+    techName: string;
+}
+
+const TechIcon = ({ techName }: TechIconProps) => {
+    switch (techName) {
+        case 'react':
+            return <FaReact title="React" />;
+        case 'nextjs':
+            return <SiNextdotjs title="Next.js" />;
+        case 'redux':
+            return <SiRedux title="Redux" />;
+        case 'sass':
+            return <FaSass title="Sass" />;
+        case 'c':
+            return <SiC title="C Language" />;
+        case 'html':
+            return <IoLogoHtml5 title="Html" />;
+        case 'css':
+            return <IoLogoCss3 title="Css" />;
+        case 'javascript':
+            return <IoLogoJavascript title="Javascript" />;
+        default:
+            return null;
+    }
+};
 
 // --- DESKTOP VARIANTS (Horizontal Split) ---
 const desktopFrontCardVariants: Variants = {
@@ -102,8 +163,8 @@ const Portfolio = () => {
                                 variants={isMobile ? groupFlipVariants : undefined}
                                 animate={isMobile ? revealState : "stacked"}
                             >
-                                <motion.div
-                                    className={`${styles.cardBase} ${styles.cardBack}`}
+                                  <motion.div
+                                    className={`${styles.cardBase} ${styles.cardBack} ${currentProject.embedCode || currentProject.imageRender ? styles.isEmbedded : ''}`}
                                     variants={backCardVariants}
                                     initial="enter"
                                     animate={isMobile ? "stacked" : revealState}
@@ -111,25 +172,47 @@ const Portfolio = () => {
                                     style={{ '--bg-image': `url(${currentProject.thumbnail})` } as React.CSSProperties}
                                 >
                                     <div className={styles.details}>
-                                        <p>{currentProject.description}</p>
-                                        <div className={styles.buttons}>
-                                            <a
-                                                href={currentProject.liveDemo}
-                                                className={styles.demoBtn}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                Live Demo
-                                            </a>
-                                            <a
-                                                href={currentProject.github}
-                                                className={styles.githubBtn}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                Github
-                                            </a>
-                                        </div>
+                                        {currentProject.embedCode ? (
+                                            <div
+                                                className={styles.sketchfabEmbed}
+                                                dangerouslySetInnerHTML={{ __html: currentProject.embedCode }}
+                                            />
+                                        ) : currentProject.imageRender ? (
+                                            <Image
+                                                src={currentProject.imageRender}
+                                                alt={currentProject.title}
+                                                fill
+                                                sizes="(max-width: 768px) 80vw, 800px"
+                                                quality={95}
+                                                style={{ objectFit: 'cover' }} // 'cover' often looks better for backgrounds
+                                            />
+                                        ) : (
+                                            <>
+                                                <p>{currentProject.description}</p>
+                                                <div className={styles.buttons}>
+                                                    {currentProject.liveDemo !== "#" && (
+                                                        <a
+                                                            href={currentProject.liveDemo}
+                                                            className={styles.demoBtn}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                        >
+                                                            Live Demo
+                                                        </a>
+                                                    )}
+                                                    {currentProject.github !== "#" && (
+                                                        <a
+                                                            href={currentProject.github}
+                                                            className={styles.githubBtn}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                        >
+                                                            Github
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                 </motion.div>
 
@@ -145,13 +228,22 @@ const Portfolio = () => {
                                         alt={currentProject.title}
                                         fill
                                         sizes="(max-width: 768px) 80vw, 600px"
+                                        quality={100} // Increase quality from the default of 75
+                                        priority={true} // Preload the first visible image
                                         className={styles.frontImg}
                                     />
                                     <div className={styles.frontContent}>
                                         <h3>{currentProject.title}</h3>
-                                        <button onClick={() => setIsRevealed(!isRevealed)} className={styles.showMoreBtn}>
-                                            {isRevealed ? "Go Back" : "Show More"}
-                                        </button>
+                                        <div className={styles.bottomContent}>
+                                            <button onClick={() => setIsRevealed(!isRevealed)} className={styles.showMoreBtn}>
+                                                {isRevealed ? "Go Back" : "Show More"}
+                                            </button>
+                                            <div className={styles.techIcons}>
+                                                {currentProject.tech?.map((techName) => (
+                                                    <TechIcon key={techName} techName={techName} />
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
                                 </motion.div>
                             </motion.div>
