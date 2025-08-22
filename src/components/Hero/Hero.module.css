@@ -105,7 +105,7 @@
   color: var(--neon-purple);
   background-color: transparent;
   border: 2px solid var(--neon-purple);
-  border-radius: 50px; /* Pill shape */
+  border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -115,7 +115,6 @@
   transform: translateY(-3px);
 }
 
-/* The circular portrait container */
 .heroImageContainer {
   position: relative;
   width: 250px;

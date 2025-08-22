@@ -11,49 +11,28 @@
   backdrop-filter: blur(6px);
 }
 
-
-
 .logo  {  
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.logoPurple {
-  color: var(--neon-purple);
-  margin-right: 10px;
-}
+.logoPurple { color: var(--neon-purple); margin-right: 10px; }
+.logoWhite { color: var(--text-secondary); }
 
-.logoWhite {
-  color: var(--text-secondary);
-}
-
-.navLink {
+.navLink, .resume {
   text-decoration: none;
   margin-left: 2rem;
   font-size: 1rem;
   font-weight: bold;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
-.navLink:hover {
+.navLink:hover, .resume:hover {
   color: white;
   text-shadow: 0 0 5px white;
 }
+.resume { color: var(--neon-purple); }
 
-.resume {
-  color: var(--neon-purple);
-  text-decoration: none;
-  margin-left: 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.resume:hover {
-  color: white;
-  text-shadow: 0 0 5px white;
-}
 
 .hamburger {
   display: none;
@@ -65,13 +44,9 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
+  z-index: 1001;
 }
-
-.hamburger:focus {
-  outline: none;
-}
-
+.hamburger:focus { outline: none; }
 .bar {
   width: 2rem;
   height: 0.25rem;
@@ -80,26 +55,31 @@
   transition: all 0.3s linear;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 998;
+}
+
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
   }
   
-  .resume {
-    color: var(--neon-purple);
-  }
   .nav {
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
     width: 70%;
-    background: var(--darkgrey-bg);
-    opacity: 99%;
+    background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+    z-index: 1001;
     
     display: flex;
     flex-direction: column;
@@ -115,9 +95,18 @@
     transform: translateX(0);
   }
 
-  .nav a {
-    font-size: 1.5rem;
-    margin-left: 0;
+  .navLink, .resume {
+    display: none;
   }
 
+  .navOpen a {
+    display: block;
+    font-size: 1.5rem;
+    margin-left: 0;
+    color: var(--text-primary);
+  }
+  
+  .navOpen .resume {
+    color: var(--neon-purple);
+  }
 }

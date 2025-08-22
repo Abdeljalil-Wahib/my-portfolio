@@ -21,17 +21,17 @@ const Hero = () => {
                                         'Full-Stack Enthusiast',
                                         'Software Engineering Student @ 1337'
                                     ]}
-                                    loop={0} // 0 means infinite loop
+                                    loop={0}
                                     cursor
                                     cursorStyle="_"
                                     typeSpeed={70}
                                     deleteSpeed={50}
-                                    delaySpeed={1500} // wait 1.5s before deleting
+                                    delaySpeed={1500}
                                 />
                             </span>
                         </h2>
                     </div>
-                    <p className={styles.bio}>I&apos;m a Web Developer and Software Engineering student at 42, passionate about creating interactive and efficient web applications while continuously expanding my expertise in modern web technologies and problem-solving.</p>
+                    <p className={styles.bio}>I&apos;m a Web Developer and Software Engineering student at 1337 Coding School, passionate about creating interactive and efficient web applications while continuously expanding my expertise in modern web technologies and problem-solving.</p>
                 </div>
                 <div className={styles.actionsContainer}>
                     <div className={styles.socials}>
@@ -59,7 +59,8 @@ const Hero = () => {
                     width={800}
                     height={600}
                     quality={100}
-                    priority
+                    priority={true}
+
                 />
             </div>
         </section>
