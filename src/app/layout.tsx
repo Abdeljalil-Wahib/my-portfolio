@@ -1,6 +1,7 @@
 'use client';
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import { Analytics } from "@vercel/analytics/next"
 import './globals.css';
 import { AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -19,6 +20,7 @@ export default function RootLayout({
         <AnimatePresence mode='wait'>
         <main key={pathname}>
           {children}
+          <Analytics />
           <SpeedInsights />
         </main>
         </AnimatePresence>
