@@ -2,7 +2,7 @@ Interactive Personal Portfolio
 This is a dynamic and fully responsive personal portfolio website built with Next.js and Framer Motion. 
 It's designed to showcase a diverse range of projects, from web applications to interactive 3D models, in a visually engaging and animated interface.
 
-Live Site: portfolio.ajwahib.vercel.app
+Live Site: [portfolio.ajwahib.vercel.app](https://awahib-portfolio.vercel.app/)
 
 ✨ Key Features
 Animated Interface: A custom, card-based UI with fluid animations and transitions powered by Framer Motion.
