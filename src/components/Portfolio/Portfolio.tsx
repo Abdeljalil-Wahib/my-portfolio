@@ -156,7 +156,7 @@ const MobilePortfolio = () => {
                         style={{ objectFit: "cover" }}
                         sizes="90vw"
                         quality={90}
-                        loading="lazy"
+                        priority
                         fill
                       />
                     </div>
@@ -314,7 +314,7 @@ const DesktopPortfolio = () => {
                         fill
                         sizes="(max-width: 768px) 80vw, 800px"
                         quality={90}
-                        loading="lazy"
+                        priority
                         style={{ objectFit: "cover" }}
                       />
                     ) : (
