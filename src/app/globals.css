@@ -1,30 +1,114 @@
 @import "tailwindcss";
 
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
-  /* Background Gradient */
-  --bg-gradient-start: #2a1e47;
+  /* Holoboard-inspired Color Palette */
+  --bg-gradient-start: #0a0a0f;
   --bg-gradient-end: #000000;
-  
+
+  /* Primary Colors - Cyan Theme */
+  --neon-cyan: #06b6d4;
+  --cyan-light: #22d3ee;
+  --cyan-bright: #67e8f9;
+
+  /* Accent Colors - Purple Theme */
+  --neon-purple: #a855f7;
+  --purple-light: #c084fc;
+  --purple-bright: #e9d5ff;
+
   /* Text Colors */
-  --neon-purple: rgb(255, 0, 255);
-  --text-primary: #E9D8FD; /* For main text */
-  --text-secondary: #a99bbd; /* For subtitles or less important text */
-  
-  /* Accent Colors */
-  --accent-primary: #C0A5FA;   /* For buttons and key highlights */
-  --accent-secondary: #9A61F4;  /* For hover effects and secondary elements */
-  --accent-border: #4f46e5;    /* A deeper color for borders */
+  --text-primary: rgba(224, 242, 254, 0.95); /* Cyan-tinted white */
+  --text-secondary: rgba(224, 242, 254, 0.85); /* Dimmed cyan-white */
+  --text-muted: rgba(224, 242, 254, 0.5);
+
+  /* UI Colors */
+  --card-bg: rgba(0, 0, 0, 0.4);
+  --card-border: rgba(6, 182, 212, 0.3);
+  --card-glow: rgba(6, 182, 212, 0.15);
+
+  /* Accent & Highlights */
+  --accent-primary: #06b6d4;
+  --accent-secondary: #a855f7;
+  --accent-hover: #22d3ee;
+
+  /* Shadows & Glows */
+  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.4);
+  --glow-cyan-strong: 0 0 30px rgba(6, 182, 212, 0.6);
+  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.4);
 }
 
 body {
-  background-color: var(--bg-gradient-end); /* Fallback for browsers that don't support the gradient */
-  background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+  background-color: var(--bg-gradient-end);
+  background-image: 
+    /* Fine grid layer (closest) */ linear-gradient(
+      rgba(6, 182, 212, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px),
+    /* Medium grid layer */
+      linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+    /* Large grid layer (furthest) */
+      linear-gradient(rgba(6, 182, 212, 0.03) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.03) 2px, transparent 2px),
+    /* Diagonal accent lines */
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 200px,
+        rgba(6, 182, 212, 0.02) 200px,
+        rgba(6, 182, 212, 0.02) 201px
+      ),
+    /* Radial glows */
+      radial-gradient(
+        ellipse at 20% 20%,
+        rgba(6, 182, 212, 0.12) 0%,
+        transparent 40%
+      ),
+    radial-gradient(
+      ellipse at 80% 80%,
+      rgba(168, 85, 247, 0.1) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(6, 182, 212, 0.05) 0%,
+      transparent 60%
+    );
+  background-size: 40px 40px, 40px 40px, 80px 80px, 80px 80px, 160px 160px,
+    160px 160px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, top left, bottom right,
+    center;
   color: var(--text-primary);
   min-height: 100vh;
+  position: relative;
+  animation: gridMove 25s linear infinite;
 }
 
+@keyframes gridMove {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, top left,
+      bottom right, center;
+  }
+  100% {
+    background-position: 40px 40px, 40px 40px, 80px 80px, 80px 80px, 160px 160px,
+      160px 160px, 200px 200px, top left, bottom right, center;
+  }
+}
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-primary);
 }
 
@@ -35,6 +119,60 @@ p {
 a {
   color: var(--accent-primary);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
+a:hover {
+  color: var(--accent-hover);
+  text-shadow: var(--glow-cyan);
+}
+
+/* Holographic glass effect utility */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  box-shadow: var(--glow-cyan);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--cyan-bright),
+    var(--neon-cyan),
+    var(--neon-purple)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--cyan-bright), var(--purple-light));
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-cyan) rgba(0, 0, 0, 0.3);
+}

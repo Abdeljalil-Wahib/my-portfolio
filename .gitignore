@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Ignore Windows Zone.Identifier files from WSL/Linux
+:Zone.Identifier

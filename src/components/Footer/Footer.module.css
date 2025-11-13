@@ -6,6 +6,9 @@
   align-items: center;
   gap: 1rem;
   text-align: center;
+  border-top: 1px solid var(--card-border);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .socialLinks {
@@ -15,13 +18,15 @@
 }
 
 .socialLinks a {
-  color: var(--neon-purple);
-  transition: color 0.3s ease, transform 0.3s ease;
+  color: var(--neon-cyan);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 0 transparent);
 }
 
 .socialLinks a:hover {
-  color: #ffffff;
+  color: var(--cyan-bright);
   transform: translateY(-3px);
+  filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8));
 }
 
 .footer p {

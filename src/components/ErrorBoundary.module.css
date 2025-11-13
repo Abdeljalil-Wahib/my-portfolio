@@ -1,0 +1,160 @@
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(
+    to bottom right,
+    var(--bg-gradient-start),
+    var(--bg-gradient-end)
+  );
+}
+
+.errorCard {
+  max-width: 600px;
+  width: 100%;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(230, 0, 255, 0.3);
+  border-radius: 1rem;
+  box-shadow: 0 0 30px rgba(230, 0, 255, 0.2);
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: shake 0.5s ease-in-out;
+}
+
+.errorTitle {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.errorMessage {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.errorDetails {
+  text-align: left;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.errorDetails summary {
+  cursor: pointer;
+  color: var(--accent-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.errorDetails summary:hover {
+  color: var(--neon-purple);
+}
+
+.errorStack {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-top: 1rem;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.retryButton,
+.homeButton {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.retryButton {
+  background-color: var(--neon-purple);
+  color: #ffffff;
+}
+
+.retryButton:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(230, 0, 255, 0.4);
+}
+
+.homeButton {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.homeButton:hover {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .errorCard {
+    padding: 2rem;
+  }
+
+  .errorTitle {
+    font-size: 1.5rem;
+  }
+
+  .errorMessage {
+    font-size: 1rem;
+  }
+
+  .errorActions {
+    flex-direction: column;
+  }
+
+  .retryButton,
+  .homeButton {
+    width: 100%;
+  }
+}

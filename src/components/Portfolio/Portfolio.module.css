@@ -1,4 +1,3 @@
-
 .mobilePortfolioSection {
   display: flex;
   flex-direction: column;
@@ -12,23 +11,22 @@
 .mobileCardContainer {
   position: relative;
   perspective: 1500px;
-  width: 80vw;
-  height: 106.67vw;
-  max-width: 400px;
-  max-height: 533px;
-  transition: all 0.5s ease-in-out, opacity 0.3s ease-in-out;
-  opacity: 1;
+  width: 85vw;
+  height: 113.33vw;
+  min-width: 320px;
+  min-height: 426px;
+  max-width: 450px;
+  max-height: 600px;
   margin-bottom: 20px;
 }
 
 .mobileCardContainer.mobileLandscape {
-  width: 90vw;
-  height: 67.5vw;
-  max-height: 450px;
-}
-
-.mobileCardContainer.isTransitioning {
-  opacity: 0;
+  width: 92vw;
+  height: 69vw;
+  min-width: 360px;
+  min-height: 270px;
+  max-width: 500px;
+  max-height: 375px;
 }
 
 .mobileFlipper {
@@ -36,11 +34,6 @@
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.7s cubic-bezier(0.6, 0.05, 0.01, 0.9);
-}
-
-.mobileFlipper.isFlipped {
-  transform: rotateY(180deg);
 }
 
 .mobileCardBase {
@@ -50,20 +43,28 @@
   width: 100%;
   height: 100%;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--glow-cyan);
   overflow: hidden;
   backface-visibility: hidden;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
 }
 
 .mobileCardBack {
   transform: rotateY(180deg);
-  background-color: #211c2c;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6),
+    rgba(6, 182, 212, 0.1)
+  );
   cursor: pointer;
+  border: 1px solid var(--neon-cyan);
   position: relative;
 }
 
 .mobileCardBack::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -77,6 +78,13 @@
   z-index: -1;
 }
 
+.mobileCardFront {
+  z-index: 2;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
 .mobilePortfolioSection .details {
   width: 100%;
   height: 100%;
@@ -84,26 +92,67 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: clamp(18px, 4vw, 25px);
   box-sizing: border-box;
+  overflow-y: auto;
+  gap: clamp(10px, 2.5vw, 14px);
 }
 
 .mobilePortfolioSection .frontContent h3 {
-  font-size: clamp(1.2rem, 5vw, 1.6rem);
+  font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+  line-height: 1.2;
 }
 
 .mobilePortfolioSection .showMoreBtn {
-  padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px);
-  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  padding: clamp(10px, 2.5vw, 12px) clamp(18px, 4.5vw, 22px);
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
 }
 
 .mobilePortfolioSection .techIcons {
-  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+  gap: clamp(8px, 2vw, 12px);
+}
+
+.mobilePortfolioSection .buttons {
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0;
 }
 
 .mobilePortfolioSection .buttons a {
-  padding: clamp(10px, 3vw, 12px) clamp(20px, 5vw, 24px);
-  font-size: clamp(0.9rem, 3vw, 1rem);
+  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px);
+  font-size: clamp(0.7rem, 2.2vw, 0.85rem);
+  flex: 1 1 auto;
+  min-width: 100px;
+  max-width: 48%;
+}
+
+.mobilePortfolioSection .details p {
+  font-size: clamp(0.75rem, 2.2vw, 0.85rem);
+  line-height: 1.45;
+  margin: 0;
+  max-height: 45vh;
+  overflow-y: auto;
+}
+
+.mobilePortfolioSection .details p {
+  font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+  line-height: 1.5;
+  margin-bottom: clamp(15px, 4vw, 20px);
+}
+
+.mobilePortfolioSection .demoBtn {
+  background: var(--card-bg);
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+.mobilePortfolioSection .githubBtn {
+  background: var(--card-bg);
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
 }
 
 .mobilePortfolioSection .navigationControls {
@@ -116,9 +165,8 @@
   z-index: 10;
 }
 
-
-
 .portfolioContainer {
+  bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,16 +177,20 @@
 
 .cardWrapper {
   position: relative;
-  width: 800px;
-  max-width: 90%;
-  height: 600px;
+  width: 650px;
+  max-width: 85%;
+  height: 488px;
   perspective: 2000px;
+  overflow: visible;
 }
 
 .cardGroup {
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: visible;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 .flipper {
@@ -146,6 +198,7 @@
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
+  overflow: visible;
 }
 
 .cardBase {
@@ -155,10 +208,23 @@
   width: 100%;
   height: 100%;
   border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--glow-cyan);
   overflow: hidden;
   backface-visibility: hidden;
-  will-change: transform;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Hover reveal removed per user request */
+
+.cardBase[style*="rotateY"] {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.6), 0 0 60px rgba(6, 182, 212, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+  border-color: var(--neon-cyan);
 }
 
 .cardFront {
@@ -187,19 +253,29 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 1;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(6, 182, 212, 0.1) 100%
+  );
 }
 
 .frontContent h3 {
-  color: #ffffff;
+  color: var(--text-secondary);
   font-size: 1.8rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 2px 8px rgba(0, 0, 0, 0.7);
   margin: 0 0 15px 0;
+  font-weight: 700;
 }
 
 .cardBack {
   z-index: 1;
-  background-color: rgba(30, 30, 30, 0.7);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8),
+    rgba(6, 182, 212, 0.15)
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -207,10 +283,12 @@
   padding: 30px;
   text-align: center;
   position: relative;
+  border: 1px solid var(--neon-cyan);
+  transform: rotateY(180deg);
 }
 
 .cardBack::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -219,7 +297,7 @@
   background-image: var(--bg-image);
   background-size: cover;
   background-position: center;
-  filter: blur(10px) brightness(0.6);
+  filter: blur(10px) brightness(0.4);
   transform: scale(1.15);
   z-index: -1;
   will-change: filter;
@@ -236,10 +314,11 @@
 }
 
 .details p {
-  color: #e0e0e0;
+  color: var(--text-secondary);
   margin-bottom: 30px;
   line-height: 1.6;
   font-size: 1.05rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .showMoreBtn {
@@ -248,15 +327,18 @@
   border-radius: 8px;
   font-weight: 600;
   transition: all 0.3s ease;
-  border: none;
+  border: 2px solid var(--card-border);
   cursor: pointer;
-  background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
   color: var(--text-secondary);
 }
 
 .showMoreBtn:hover {
-  color: var(--neon-purple);
+  border-color: var(--neon-cyan);
+  box-shadow: var(--glow-cyan);
   transform: translateY(-2px);
+  color: var(--cyan-bright);
 }
 
 .bottomContent {
@@ -270,11 +352,18 @@
   display: flex;
   gap: 12px;
   font-size: 1.6rem;
-  color: var(--text-primary);
+  color: var(--neon-cyan);
 }
 
 .techIcons svg {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.5));
+  transition: all 0.3s ease;
+}
+
+.techIcons svg:hover {
+  color: var(--cyan-bright);
+  filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8));
+  transform: scale(1.1);
 }
 
 .sketchfabEmbed,
@@ -302,33 +391,43 @@
   flex-grow: 1;
   max-width: 200px;
   text-align: center;
+  backdrop-filter: blur(10px);
 }
 
 .demoBtn {
   cursor: pointer;
-  background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
-  color: var(--text-secondary);
+  background: var(--card-bg);
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
 }
 
 .demoBtn:hover {
-  color: var(--neon-purple);
+  box-shadow: var(--glow-cyan);
   transform: translateY(-2px);
+  color: var(--cyan-bright);
+  border-color: var(--cyan-bright);
 }
 
 .githubBtn {
-  background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
-  color: var(--text-secondary);
+  background: var(--card-bg);
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
 }
 
 .githubBtn:hover {
-  color: var(--neon-purple);
+  box-shadow: var(--glow-cyan);
   transform: translateY(-2px);
+  color: var(--cyan-bright);
+  border-color: var(--cyan-bright);
 }
 
 .navigationControls {
   position: absolute;
-  bottom: -60px;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 650px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -336,33 +435,50 @@
 }
 
 .arrow {
-  color: #d0bfff;
-  font-size: 2.5rem;
+  margin-top: 10px;
+  padding-bottom: 5px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neon-cyan);
+  font-size: 2rem;
   cursor: pointer;
   user-select: none;
-  transition: color 0.3s;
-  padding: 10px;
-}
-
-.arrow:hover {
-  color: var(--neon-purple);
+  transition: all 0.3s ease;
 }
 
 .progressDots {
+  margin-top: 20px;
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  align-items: center;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background-color: #555;
-  transition: background-color 0.3s;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--card-border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.dot:hover {
+  border-color: var(--neon-cyan);
+  transform: scale(1.2);
 }
 
 .dot.active {
-  background-color: var(--neon-purple);
+  width: 32px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--cyan-bright));
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.7),
+    inset 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .cardBack.isEmbedded {
@@ -378,9 +494,9 @@
 
 @media (max-width: 768px) {
   .cardWrapper {
-    width: 80vw;
+    width: 90vw;
     height: 106.67vw;
-    max-width: 400px;
+    max-width: 00px;
     max-height: 533px;
   }
 
@@ -419,7 +535,9 @@
   }
 
   .arrow {
-    font-size: 2.2rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.8rem;
   }
 
   .progressDots {
@@ -427,10 +545,13 @@
   }
 
   .dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
 
+  .dot.active {
+    width: 28px;
+  }
 
   .mobileCardContainer.mobileLandscape .frontContent {
     padding: 15px;
