@@ -202,8 +202,7 @@ const MobilePortfolio = () => {
                   className={styles.frontImg}
                   sizes="90vw"
                   quality={85}
-                  priority={currentIndex === 0}
-                  loading={currentIndex === 0 ? undefined : "lazy"}
+                  priority
                   fill
                 />
                 <div className={styles.frontContent}>
@@ -358,8 +357,7 @@ const DesktopPortfolio = () => {
                     fill
                     sizes="(max-width: 768px) 80vw, 600px"
                     quality={85}
-                    priority={currentIndex === 0}
-                    loading={currentIndex === 0 ? undefined : "lazy"}
+                    priority
                     className={styles.frontImg}
                   />
                   <div className={styles.frontContent}>
