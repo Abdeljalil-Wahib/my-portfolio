@@ -21,6 +21,7 @@ import {
   SiTailwindcss,
   SiSocketdotio,
   SiTypescript,
+  SiBlender,
 } from "react-icons/si";
 import { IoLogoHtml5, IoLogoCss3, IoLogoJavascript } from "react-icons/io5";
 
@@ -69,7 +70,7 @@ const TechIcon = ({ techName }: TechIconProps): React.ReactElement | null => {
     case "socketio":
       return <SiSocketdotio title="Socket.IO" />;
     case "blender":
-      return null; // Blender doesn't have an icon, handled differently
+      return <SiBlender title="Blender" />;
     default:
       return null;
   }
@@ -77,152 +78,163 @@ const TechIcon = ({ techName }: TechIconProps): React.ReactElement | null => {
 
 const MobilePortfolio = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isFlipped, setIsFlipped] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isEmbedLoading, setIsEmbedLoading] = useState(true);
+  const [direction, setDirection] = useState<"next" | "prev">("next");
   const currentProject = projects[currentIndex];
 
-  const changeSlide = (direction: "next" | "prev") => {
+  useEffect(() => {
+    // Reset loading state when project changes
+    setIsEmbedLoading(true);
+  }, [currentIndex]);
+
+  const changeSlide = (slideDirection: "next" | "prev") => {
     if (isTransitioning) return;
 
     setIsTransitioning(true);
-
-    // Flip back if showing back
-    if (isFlipped) {
-      setIsFlipped(false);
-    }
-
-    const delay = isFlipped ? 600 : 0;
+    setDirection(slideDirection);
+    setCurrentIndex((prevIndex) =>
+      slideDirection === "next"
+        ? (prevIndex + 1) % projects.length
+        : (prevIndex - 1 + projects.length) % projects.length
+    );
+    
     setTimeout(() => {
-      setCurrentIndex((prevIndex) =>
-        direction === "next"
-          ? (prevIndex + 1) % projects.length
-          : (prevIndex - 1 + projects.length) % projects.length
-      );
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 300);
-    }, delay);
+      setIsTransitioning(false);
+    }, 400);
+  };
+
+  const slideVariants = {
+    enter: (dir: string) => ({
+      x: dir === "next" ? 300 : -300,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (dir: string) => ({
+      x: dir === "next" ? -300 : 300,
+      opacity: 0,
+    }),
   };
 
   return (
     <LazyMotion features={domAnimation}>
       <section className={styles.mobilePortfolioSection}>
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence initial={false} mode="wait" custom={direction}>
           <motion.div
             key={currentIndex}
-            className={`${styles.mobileCardContainer} ${
-              currentProject.cardType === "landscape"
-                ? styles.mobileLandscape
-                : ""
-            }`}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 },
+            }}
+            className={styles.mobileTwoCardLayout}
           >
-            <motion.div
-              className={styles.mobileFlipper}
-              animate={{ rotateY: isFlipped ? 180 : 0 }}
-              transition={{ duration: 0.6, ease: [0.6, 0.05, 0.01, 0.9] }}
-              style={{ transformStyle: "preserve-3d" }}
-            >
-              {/* Back Card */}
-              <div
-                className={`${styles.mobileCardBase} ${styles.mobileCardBack} ${
-                  currentProject.embedCode || currentProject.imageRender
-                    ? styles.isEmbedded
-                    : ""
-                }`}
-                onClick={() => setIsFlipped(false)}
-                style={
-                  {
-                    "--bg-image": `url(${currentProject.thumbnail})`,
-                  } as React.CSSProperties
-                }
-              >
-                <div className={styles.details}>
-                  {currentProject.embedCode ? (
+            {/* Preview Card */}
+            <div className={styles.mobilePreviewCard}>
+              <div className={styles.previewImageWrapper}>
+                {currentProject.videoPreview ? (
+                  <video
+                    src={currentProject.videoPreview}
+                    className={styles.mobilePreviewVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                ) : currentProject.embedCode ? (
+                  <>
+                    {isEmbedLoading && (
+                      <div className={styles.embedLoading}>
+                        <div className={styles.spinner}></div>
+                        <span>Loading 3D Model...</span>
+                      </div>
+                    )}
                     <div
                       className={styles.sketchfabEmbed}
                       dangerouslySetInnerHTML={{
-                        __html: currentProject.embedCode,
+                        __html: currentProject.embedCode.replace(
+                          '<iframe',
+                          `<iframe onload="this.parentElement.parentElement.querySelector('.${styles.embedLoading}')?.remove()"`
+                        ),
                       }}
                     />
-                  ) : currentProject.imageRender ? (
-                    <div className={styles.imageRender}>
-                      <Image
-                        src={currentProject.imageRender}
-                        alt={currentProject.title}
-                        style={{ objectFit: "cover" }}
-                        sizes="90vw"
-                        quality={90}
-                        priority
-                        fill
-                      />
-                    </div>
-                  ) : (
-                    <>
-                      <p>{currentProject.description}</p>
-                      <div className={styles.buttons}>
-                        {currentProject.liveDemo !== "#" && (
-                          <a
-                            href={currentProject.liveDemo}
-                            className={styles.demoBtn}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Live Demo
-                          </a>
-                        )}
-                        {currentProject.github !== "#" && (
-                          <a
-                            href={currentProject.github}
-                            className={styles.githubBtn}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Github
-                          </a>
-                        )}
+                  </>
+                ) : currentProject.imageRender ? (
+                  <Image
+                    src={currentProject.imageRender}
+                    alt={currentProject.title}
+                    fill
+                    sizes="90vw"
+                    quality={90}
+                    priority
+                    className={styles.previewImage}
+                  />
+                ) : (
+                  <Image
+                    src={currentProject.thumbnail}
+                    alt={currentProject.title}
+                    fill
+                    sizes="90vw"
+                    quality={90}
+                    priority
+                    className={styles.previewImage}
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* Info Card */}
+            <div className={styles.mobileInfoCard}>
+              <div className={styles.infoContent}>
+                <h2 className={styles.mobileProjectTitle}>
+                  {currentProject.title}
+                </h2>
+
+                <p className={styles.mobileProjectDescription}>
+                  {currentProject.description}
+                </p>
+
+                <div className={styles.mobileTechSection}>
+                  <div className={styles.mobileTechGrid}>
+                    {currentProject.tech?.map((techName) => (
+                      <div key={techName} className={styles.mobileTechBadge}>
+                        <TechIcon techName={techName} />
                       </div>
-                    </>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.mobileProjectButtons}>
+                  {currentProject.liveDemo !== "#" && (
+                    <a
+                      href={currentProject.liveDemo}
+                      className={styles.mobilePrimaryBtn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>Demo</span>
+                    </a>
+                  )}
+                  {currentProject.github !== "#" && (
+                    <a
+                      href={currentProject.github}
+                      className={styles.mobileSecondaryBtn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>Code</span>
+                    </a>
                   )}
                 </div>
               </div>
-
-              {/* Front Card */}
-              <div
-                className={`${styles.mobileCardBase} ${styles.mobileCardFront}`}
-              >
-                <Image
-                  src={currentProject.thumbnail}
-                  alt={currentProject.title}
-                  className={styles.frontImg}
-                  sizes="90vw"
-                  quality={85}
-                  priority
-                  fill
-                />
-                <div className={styles.frontContent}>
-                  <h3>{currentProject.title}</h3>
-                  <div className={styles.bottomContent}>
-                    <button
-                      onClick={() => setIsFlipped(true)}
-                      className={styles.showMoreBtn}
-                    >
-                      Show More
-                    </button>
-                    <div className={styles.techIcons}>
-                      {currentProject.tech?.map((techName) => (
-                        <TechIcon key={techName} techName={techName} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            </div>
           </motion.div>
         </AnimatePresence>
         <NavigationControls
@@ -238,152 +250,184 @@ const MobilePortfolio = () => {
 
 const DesktopPortfolio = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isFlipped, setIsFlipped] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isEmbedLoading, setIsEmbedLoading] = useState(true);
   const currentProject = projects[currentIndex];
 
-  const changeSlide = (direction: "next" | "prev") => {
+  useEffect(() => {
+    // Reset loading state when project changes
+    setIsEmbedLoading(true);
+  }, [currentIndex]);
+
+  const [direction, setDirection] = useState<"next" | "prev">("next");
+
+  const changeSlide = (slideDirection: "next" | "prev") => {
     if (isTransitioning) return;
 
     setIsTransitioning(true);
-
-    // Flip back if showing back
-    if (isFlipped) {
-      setIsFlipped(false);
-    }
-
-    const delay = isFlipped ? 600 : 0;
+    setDirection(slideDirection);
+    setCurrentIndex((prevIndex) =>
+      slideDirection === "next"
+        ? (prevIndex + 1) % projects.length
+        : (prevIndex - 1 + projects.length) % projects.length
+    );
+    
     setTimeout(() => {
-      setCurrentIndex((prevIndex) =>
-        direction === "next"
-          ? (prevIndex + 1) % projects.length
-          : (prevIndex - 1 + projects.length) % projects.length
-      );
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 300);
-    }, delay);
+      setIsTransitioning(false);
+    }, 400);
+  };
+
+  const slideVariants = {
+    enter: (dir: string) => ({
+      x: dir === "next" ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (dir: string) => ({
+      x: dir === "next" ? -1000 : 1000,
+      opacity: 0,
+    }),
   };
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className={styles.portfolioContainer}>
-        <div className={styles.cardWrapper}>
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={currentIndex}
-              className={styles.cardGroup}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className={styles.flipper}
-                animate={{ rotateY: isFlipped ? 180 : 0 }}
-                transition={{ duration: 0.6, ease: [0.6, 0.05, 0.01, 0.9] }}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {/* Back Card */}
-                <div
-                  className={`${styles.cardBase} ${styles.cardBack} ${
-                    currentProject.embedCode || currentProject.imageRender
-                      ? styles.isEmbedded
-                      : ""
-                  }`}
-                  onClick={() => setIsFlipped(false)}
-                  style={
-                    {
-                      "--bg-image": `url(${currentProject.thumbnail})`,
-                    } as React.CSSProperties
-                  }
-                >
-                  <div className={styles.details}>
-                    {currentProject.embedCode ? (
-                      <div
-                        className={styles.sketchfabEmbed}
-                        dangerouslySetInnerHTML={{
-                          __html: currentProject.embedCode,
-                        }}
-                      />
-                    ) : currentProject.imageRender ? (
-                      <Image
-                        src={currentProject.imageRender}
-                        alt={currentProject.title}
-                        fill
-                        sizes="(max-width: 768px) 80vw, 800px"
-                        quality={90}
-                        priority
-                        style={{ objectFit: "cover" }}
-                      />
-                    ) : (
-                      <>
-                        <p>{currentProject.description}</p>
-                        <div className={styles.buttons}>
-                          {currentProject.liveDemo !== "#" && (
-                            <a
-                              href={currentProject.liveDemo}
-                              className={styles.demoBtn}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Live Demo
-                            </a>
-                          )}
-                          {currentProject.github !== "#" && (
-                            <a
-                              href={currentProject.github}
-                              className={styles.githubBtn}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Github
-                            </a>
-                          )}
-                        </div>
-                      </>
+      <section className={styles.desktopPortfolioSection}>
+        <AnimatePresence initial={false} mode="wait" custom={direction}>
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 },
+            }}
+            className={styles.twoCardLayout}
+          >
+            {/* Preview Card */}
+            <div className={styles.previewCard}>
+              <div className={styles.previewImageWrapper}>
+                {currentProject.videoPreview ? (
+                  <video
+                    src={currentProject.videoPreview}
+                    className={styles.previewVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                ) : currentProject.embedCode ? (
+                  <>
+                    {isEmbedLoading && (
+                      <div className={styles.embedLoading}>
+                        <div className={styles.spinner}></div>
+                        <span>Loading 3D Model...</span>
+                      </div>
                     )}
-                  </div>
-                </div>
-
-                {/* Front Card */}
-                <div
-                  className={`${styles.cardBase} ${styles.cardFront}`}
-                  onClick={() => setIsFlipped(!isFlipped)}
-                >
+                    <div
+                      className={styles.sketchfabEmbed}
+                      dangerouslySetInnerHTML={{
+                        __html: currentProject.embedCode.replace(
+                          '<iframe',
+                          `<iframe onload="this.parentElement.parentElement.querySelector('.${styles.embedLoading}')?.remove()"`
+                        ),
+                      }}
+                    />
+                  </>
+                ) : currentProject.imageRender ? (
+                  <Image
+                    src={currentProject.imageRender}
+                    alt={currentProject.title}
+                    fill
+                    sizes="(max-width: 1200px) 50vw, 600px"
+                    quality={90}
+                    priority
+                    className={styles.previewImage}
+                  />
+                ) : (
                   <Image
                     src={currentProject.thumbnail}
                     alt={currentProject.title}
                     fill
-                    sizes="(max-width: 768px) 80vw, 600px"
-                    quality={85}
+                    sizes="(max-width: 1200px) 50vw, 600px"
+                    quality={90}
                     priority
-                    className={styles.frontImg}
+                    className={styles.previewImage}
                   />
-                  <div className={styles.frontContent}>
-                    <h3>{currentProject.title}</h3>
-                    <div className={styles.bottomContent}>
-                      <button className={styles.showMoreBtn}>
-                        {isFlipped ? "Go Back" : "Show More"}
-                      </button>
-                      <div className={styles.techIcons}>
-                        {currentProject.tech?.map((techName) => (
-                          <TechIcon key={techName} techName={techName} />
-                        ))}
+                )}
+                <div className={styles.previewOverlay}>
+                  <span className={styles.viewLabel}>Preview</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Info Card */}
+            <div className={styles.infoCard}>
+              <div className={styles.infoContent}>
+                <h2 className={styles.projectTitle}>
+                  {currentProject.title}
+                </h2>
+
+                <p className={styles.projectDescription}>
+                  {currentProject.description}
+                </p>
+
+                <div className={styles.techStackSection}>
+                  <h3 className={styles.techStackLabel}>Tech Stack</h3>
+                  <div className={styles.techGrid}>
+                    {currentProject.tech?.map((techName) => (
+                      <div key={techName} className={styles.techBadge}>
+                        <TechIcon techName={techName} />
+                        <span className={styles.techName}>{techName}</span>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
-          <NavigationControls
-            onPrev={() => changeSlide("prev")}
-            onNext={() => changeSlide("next")}
-            currentIndex={currentIndex}
-            total={projects.length}
-          />
-        </div>
+
+                <div className={styles.projectButtons}>
+                  {currentProject.liveDemo !== "#" && (
+                    <a
+                      href={currentProject.liveDemo}
+                      className={styles.primaryBtn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>Live Demo</span>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </a>
+                  )}
+                  {currentProject.github !== "#" && (
+                    <a
+                      href={currentProject.github}
+                      className={styles.secondaryBtn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>GitHub</span>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+        
+        <NavigationControls
+          onPrev={() => changeSlide("prev")}
+          onNext={() => changeSlide("next")}
+          currentIndex={currentIndex}
+          total={projects.length}
+        />
       </section>
     </LazyMotion>
   );

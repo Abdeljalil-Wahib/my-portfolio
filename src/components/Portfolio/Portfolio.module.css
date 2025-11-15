@@ -157,12 +157,115 @@
 
 .mobilePortfolioSection .navigationControls {
   position: relative;
-  width: 90vw;
-  max-width: 420px;
+  width: 100%;
   bottom: auto;
-  left: auto;
-  transform: none;
+  justify-content: center;
   z-index: 10;
+  margin-top: 20px;
+}
+
+/* Mobile Two-Card Layout */
+.mobileTwoCardLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 90vw;
+  max-width: 500px;
+  padding: 0 20px;
+}
+
+.mobilePreviewCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(6, 182, 212, 0.15);
+  backdrop-filter: blur(10px);
+  height: 280px;
+}
+
+.mobileInfoCard {
+  position: relative;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  min-height: 260px;
+}
+
+.mobileProjectTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--cyan-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.mobileProjectDescription {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.mobileTechSection {
+  margin-bottom: 16px;
+}
+
+.mobileTechGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mobileTechBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 20px;
+  font-size: 1.1rem;
+  color: var(--neon-cyan);
+}
+
+.mobileProjectButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.mobilePrimaryBtn,
+.mobileSecondaryBtn {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.mobilePrimaryBtn:hover,
+.mobileSecondaryBtn:hover {
+  background: rgba(6, 182, 212, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
 }
 
 .portfolioContainer {
@@ -423,62 +526,69 @@
 
 .navigationControls {
   position: absolute;
-  bottom: -80px;
+  bottom: -70px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 650px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  gap: 24px;
 }
 
-.arrow {
-  margin-top: 10px;
-  padding-bottom: 5px;
-  width: 50px;
-  height: 50px;
+.navButton {
+  background: none;
+  border: none;
+  color: rgba(6, 182, 212, 0.7);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 20px;
+  width: 20px;
+}
+
+.navButton:hover {
   color: var(--neon-cyan);
-  font-size: 2rem;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.3s ease;
+  transform: scale(1.1);
+}
+
+.navButton:active {
+  transform: scale(0.95);
 }
 
 .progressDots {
-  margin-top: 20px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
+  padding: 0;
+  margin-top: 6px;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  border: 2px solid var(--card-border);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(6, 182, 212, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  transition: all 0.3s ease;
   cursor: pointer;
-  position: relative;
 }
 
 .dot:hover {
-  border-color: var(--neon-cyan);
+  background: rgba(6, 182, 212, 0.4);
   transform: scale(1.2);
 }
 
-.dot.active {
-  width: 32px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, var(--neon-cyan), var(--cyan-bright));
+.activeDot {
+  background: var(--neon-cyan);
   border-color: var(--neon-cyan);
-  box-shadow: 0 0 12px rgba(6, 182, 212, 0.7),
-    inset 0 0 8px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+  width: 10px;
+  height: 10px;
 }
 
 .cardBack.isEmbedded {
@@ -527,26 +637,26 @@
   }
 
   .navigationControls {
-    width: 90vw;
-    max-width: 420px;
-    left: 50%;
-    bottom: -55px;
-    transform: translateX(-50%);
+    gap: 16px;
+    bottom: -60px;
   }
 
-  .arrow {
-    width: 44px;
-    height: 44px;
-    font-size: 1.8rem;
+  .navButton {
+    font-size: 1.6rem;
   }
 
   .progressDots {
-    gap: 8px;
+    gap: 6px;
   }
 
   .dot {
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
+  }
+
+  .activeDot {
+    width: 9px;
+    height: 9px;
   }
 
   .dot.active {
@@ -580,5 +690,335 @@
   .mobileCardContainer.mobileLandscape .buttons a {
     padding: 8px 16px;
     font-size: 0.85rem;
+  }
+}
+
+/* Desktop Two-Card Layout */
+.desktopPortfolioSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 60px 20px 100px 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.twoCardLayout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 24px;
+}
+
+/* Preview Card */
+.previewCard {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(6, 182, 212, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 500px;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.previewCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(6, 182, 212, 0.4);
+  border-color: var(--neon-cyan);
+}
+
+.previewImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.previewImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+  filter: brightness(0.9);
+}
+
+.previewCard:hover .previewImage {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+
+.previewOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.previewCard:hover .previewOverlay {
+  opacity: 1;
+}
+
+.viewLabel {
+  color: var(--neon-cyan);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+}
+
+.sketchfabEmbed {
+  width: 100%;
+  height: 100%;
+}
+
+.sketchfabEmbed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.previewVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.embedLoading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(0, 255, 255, 0.1);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Info Card */
+.infoCard {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 500px;
+  overflow: hidden;
+}
+
+.infoCard:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+.infoCard::-webkit-scrollbar {
+  width: 8px;
+}
+
+.infoCard::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.infoCard::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 4px;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.projectTitle {
+  color: var(--text-secondary);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+  background: linear-gradient(135deg, var(--neon-cyan), var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.projectDescription {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+
+.techStackSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.techStackLabel {
+  color: var(--neon-cyan);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.techGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.techBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.techBadge:hover {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+}
+
+.techName {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.projectButtons {
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.primaryBtn {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+.primaryBtn:hover {
+  background: rgba(6, 182, 212, 0.25);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
+  transform: translateY(-2px);
+}
+
+.secondaryBtn {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+.primaryBtn svg,
+.secondaryBtn svg {
+  transition: transform 0.3s ease;
+}
+
+.primaryBtn:hover svg {
+  transform: translateX(4px);
+}
+
+/* Desktop Navigation Controls */
+.desktopPortfolioSection .navigationControls {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  margin-top: 0;
+}
+
+@media (max-width: 1024px) {
+  .twoCardLayout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .previewCard,
+  .infoCard {
+    height: auto;
+    min-height: 400px;
+  }
+
+  .projectTitle {
+    font-size: 2rem;
   }
 }

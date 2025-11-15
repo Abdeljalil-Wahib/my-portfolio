@@ -23,9 +23,10 @@ export interface Project {
   liveDemo: string;
   github: string;
   tech: TechStack[];
-  cardType?: CardType;
+  cardType?: "portrait" | "landscape";
   embedCode?: string;
   imageRender?: string;
+  videoPreview?: string;
 }
 
 export interface ProjectsData {

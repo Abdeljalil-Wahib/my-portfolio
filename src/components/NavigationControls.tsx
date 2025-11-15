@@ -7,10 +7,6 @@ interface NavigationControlsProps {
   total: number;
 }
 
-/**
- * Navigation controls component for portfolio carousel
- * Displays left/right arrows and progress dots
- */
 const NavigationControls: React.FC<NavigationControlsProps> = ({
   onPrev,
   onNext,
@@ -20,39 +16,30 @@ const NavigationControls: React.FC<NavigationControlsProps> = ({
   return (
     <div className={styles.navigationControls}>
       <button
-        className={styles.arrow}
+        className={styles.navButton}
         onClick={onPrev}
         aria-label="Previous project"
         type="button"
       >
-        &#x2190;
+        ←
       </button>
-
-      <div
-        className={styles.progressDots}
-        role="tablist"
-        aria-label="Project indicators"
-      >
+      <div className={styles.progressDots}>
         {Array.from({ length: total }).map((_, index) => (
           <div
             key={index}
-            role="tab"
-            aria-selected={currentIndex === index}
-            aria-label={`Project ${index + 1}`}
             className={`${styles.dot} ${
-              currentIndex === index ? styles.active : ""
+              currentIndex === index ? styles.activeDot : ""
             }`}
           />
         ))}
       </div>
-
       <button
-        className={styles.arrow}
+        className={styles.navButton}
         onClick={onNext}
         aria-label="Next project"
         type="button"
       >
-        &#x2192;
+        →
       </button>
     </div>
   );

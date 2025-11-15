@@ -10,6 +10,7 @@ export const projects: Project[] = [
     github: "https://github.com/Abdeljalil-Wahib/Holoboard",
     tech: ["nextjs", "react", "typescript", "tailwind", "konva", "socketio"],
     cardType: "landscape",
+    videoPreview: "/videos/holoboard.mp4",
   },
   {
     title: "SnapShop - E-commerce SPA",
