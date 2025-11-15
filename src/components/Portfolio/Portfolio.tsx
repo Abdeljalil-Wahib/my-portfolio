@@ -8,6 +8,43 @@ import {
   domAnimation,
 } from "framer-motion";
 import Image from "next/image";
+import { ImageProps } from "next/image";
+// Spinner for images
+function ImageWithSpinner(props: ImageProps) {
+  const [loading, setLoading] = useState(true);
+  // Always provide alt prop for accessibility
+  const { alt, ...rest } = props;
+  return (
+    <>
+      {loading && (
+        <div className={styles.embedLoading}><span className={styles.spinner}></span></div>
+      )}
+      <Image {...rest} alt={alt || ""} onLoad={() => setLoading(false)} style={loading ? { visibility: "hidden" } : {}} />
+    </>
+  );
+}
+
+// Spinner for videos
+function VideoWithSpinner({ src, className }: { src: string; className?: string }) {
+  const [loading, setLoading] = useState(true);
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      {loading && (
+        <div className={styles.embedLoading}><span className={styles.spinner}></span></div>
+      )}
+      <video
+        src={src}
+        className={className}
+        autoPlay
+        loop
+        muted
+        playsInline
+        onLoadedData={() => setLoading(false)}
+        style={loading ? { visibility: "hidden" } : {}}
+      />
+    </div>
+  );
+}
 import { useState, useEffect } from "react";
 import NavigationControls from "@/components/NavigationControls";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -153,15 +190,9 @@ const MobilePortfolio = () => {
             {/* Preview Card */}
             <div className={styles.mobilePreviewCard}>
               <div className={styles.previewImageWrapper}>
+                {/* Show spinner for image/video, not for 3D embed */}
                 {currentProject.videoPreview ? (
-                  <video
-                    src={currentProject.videoPreview}
-                    className={styles.mobilePreviewVideo}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
+                  <VideoWithSpinner src={currentProject.videoPreview} className={styles.mobilePreviewVideo} />
                 ) : currentProject.embedCode ? (
                   <div
                     className={styles.sketchfabEmbed}
@@ -170,7 +201,7 @@ const MobilePortfolio = () => {
                     }}
                   />
                 ) : currentProject.imageRender ? (
-                  <Image
+                  <ImageWithSpinner
                     src={currentProject.imageRender}
                     alt={currentProject.title}
                     fill
@@ -181,7 +212,7 @@ const MobilePortfolio = () => {
                     className={styles.previewImage}
                   />
                 ) : (
-                  <Image
+                  <ImageWithSpinner
                     src={currentProject.thumbnail}
                     alt={currentProject.title}
                     fill
@@ -331,15 +362,9 @@ const DesktopPortfolio = () => {
             {/* Preview Card */}
             <div className={styles.previewCard}>
               <div className={styles.previewImageWrapper}>
+                {/* Show spinner for image/video, not for 3D embed */}
                 {currentProject.videoPreview ? (
-                  <video
-                    src={currentProject.videoPreview}
-                    className={styles.previewVideo}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
+                  <VideoWithSpinner src={currentProject.videoPreview} className={styles.previewVideo} />
                 ) : currentProject.embedCode ? (
                   <div
                     className={styles.sketchfabEmbed}
@@ -348,7 +373,7 @@ const DesktopPortfolio = () => {
                     }}
                   />
                 ) : currentProject.imageRender ? (
-                  <Image
+                  <ImageWithSpinner
                     src={currentProject.imageRender}
                     alt={currentProject.title}
                     fill
@@ -359,7 +384,7 @@ const DesktopPortfolio = () => {
                     className={styles.previewImage}
                   />
                 ) : (
-                  <Image
+                  <ImageWithSpinner
                     src={currentProject.thumbnail}
                     alt={currentProject.title}
                     fill
