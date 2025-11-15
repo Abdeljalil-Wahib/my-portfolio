@@ -79,18 +79,13 @@ const TechIcon = ({ techName }: TechIconProps): React.ReactElement | null => {
 const MobilePortfolio = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isEmbedLoading, setIsEmbedLoading] = useState(true);
   const [direction, setDirection] = useState<"next" | "prev">("next");
   const currentProject = projects[currentIndex];
 
   useEffect(() => {
-    // Reset loading state when project changes
-    setIsEmbedLoading(true);
-    
     // Preload next and previous project assets
     const nextIndex = (currentIndex + 1) % projects.length;
     const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
-    
     [projects[nextIndex], projects[prevIndex]].forEach(project => {
       if (project.videoPreview) {
         const video = document.createElement('video');
@@ -158,13 +153,6 @@ const MobilePortfolio = () => {
             {/* Preview Card */}
             <div className={styles.mobilePreviewCard}>
               <div className={styles.previewImageWrapper}>
-                {/* Loading spinner for all preview types */}
-                {isEmbedLoading && (
-                  <div className={styles.embedLoading}>
-                    <div className={styles.spinner}></div>
-                    <span>Loading Preview...</span>
-                  </div>
-                )}
                 {currentProject.videoPreview ? (
                   <video
                     src={currentProject.videoPreview}
@@ -173,17 +161,12 @@ const MobilePortfolio = () => {
                     loop
                     muted
                     playsInline
-                    onLoadedData={() => setIsEmbedLoading(false)}
-                    style={isEmbedLoading ? { visibility: 'hidden' } : {}}
                   />
                 ) : currentProject.embedCode ? (
                   <div
                     className={styles.sketchfabEmbed}
                     dangerouslySetInnerHTML={{
-                      __html: currentProject.embedCode.replace(
-                        '<iframe',
-                        `<iframe onload=\"this.parentElement.parentElement.querySelector('.${styles.embedLoading}')?.remove();window.dispatchEvent(new Event('embedLoaded'))\"`
-                      ),
+                      __html: currentProject.embedCode,
                     }}
                   />
                 ) : currentProject.imageRender ? (
@@ -196,8 +179,6 @@ const MobilePortfolio = () => {
                     priority
                     fetchPriority="high"
                     className={styles.previewImage}
-                    onLoad={() => setIsEmbedLoading(false)}
-                    style={isEmbedLoading ? { visibility: 'hidden' } : {}}
                   />
                 ) : (
                   <Image
@@ -209,8 +190,6 @@ const MobilePortfolio = () => {
                     priority
                     fetchPriority="high"
                     className={styles.previewImage}
-                    onLoad={() => setIsEmbedLoading(false)}
-                    style={isEmbedLoading ? { visibility: 'hidden' } : {}}
                   />
                 )}
               </div>
@@ -277,12 +256,9 @@ const MobilePortfolio = () => {
 const DesktopPortfolio = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isEmbedLoading, setIsEmbedLoading] = useState(true);
   const currentProject = projects[currentIndex];
 
   useEffect(() => {
-    // Reset loading state when project changes
-    setIsEmbedLoading(true);
     // Preload next and previous project assets
     const nextIndex = (currentIndex + 1) % projects.length;
     const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
@@ -300,12 +276,6 @@ const DesktopPortfolio = () => {
         document.head.appendChild(link);
       }
     });
-    // Listen for iframe embed load event
-    const handleEmbedLoaded = () => setIsEmbedLoading(false);
-    window.addEventListener('embedLoaded', handleEmbedLoaded);
-    return () => {
-      window.removeEventListener('embedLoaded', handleEmbedLoaded);
-    };
   }, [currentIndex]);
 
   const [direction, setDirection] = useState<"next" | "prev">("next");
@@ -361,13 +331,6 @@ const DesktopPortfolio = () => {
             {/* Preview Card */}
             <div className={styles.previewCard}>
               <div className={styles.previewImageWrapper}>
-                {/* Loading spinner for all preview types */}
-                {isEmbedLoading && (
-                  <div className={styles.embedLoading}>
-                    <div className={styles.spinner}></div>
-                    <span>Loading Preview...</span>
-                  </div>
-                )}
                 {currentProject.videoPreview ? (
                   <video
                     src={currentProject.videoPreview}
@@ -376,17 +339,12 @@ const DesktopPortfolio = () => {
                     loop
                     muted
                     playsInline
-                    onLoadedData={() => setIsEmbedLoading(false)}
-                    style={isEmbedLoading ? { visibility: 'hidden' } : {}}
                   />
                 ) : currentProject.embedCode ? (
                   <div
                     className={styles.sketchfabEmbed}
                     dangerouslySetInnerHTML={{
-                      __html: currentProject.embedCode.replace(
-                        '<iframe',
-                        `<iframe onload=\"this.parentElement.parentElement.querySelector('.${styles.embedLoading}')?.remove();window.dispatchEvent(new Event('embedLoaded'))\"`
-                      ),
+                      __html: currentProject.embedCode,
                     }}
                   />
                 ) : currentProject.imageRender ? (
@@ -399,8 +357,6 @@ const DesktopPortfolio = () => {
                     priority
                     fetchPriority="high"
                     className={styles.previewImage}
-                    onLoad={() => setIsEmbedLoading(false)}
-                    style={isEmbedLoading ? { visibility: 'hidden' } : {}}
                   />
                 ) : (
                   <Image
@@ -412,8 +368,6 @@ const DesktopPortfolio = () => {
                     priority
                     fetchPriority="high"
                     className={styles.previewImage}
-                    onLoad={() => setIsEmbedLoading(false)}
-                    style={isEmbedLoading ? { visibility: 'hidden' } : {}}
                   />
                 )}
                 <div className={styles.previewOverlay}>
