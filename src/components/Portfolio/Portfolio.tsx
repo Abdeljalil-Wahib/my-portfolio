@@ -86,6 +86,25 @@ const MobilePortfolio = () => {
   useEffect(() => {
     // Reset loading state when project changes
     setIsEmbedLoading(true);
+    
+    // Preload next and previous project assets
+    const nextIndex = (currentIndex + 1) % projects.length;
+    const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
+    
+    [projects[nextIndex], projects[prevIndex]].forEach(project => {
+      if (project.videoPreview) {
+        const video = document.createElement('video');
+        video.src = project.videoPreview;
+        video.preload = 'auto';
+        video.load();
+      } else if (project.imageRender || project.thumbnail) {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = project.imageRender || project.thumbnail;
+        document.head.appendChild(link);
+      }
+    });
   }, [currentIndex]);
 
   const changeSlide = (slideDirection: "next" | "prev") => {
@@ -106,7 +125,7 @@ const MobilePortfolio = () => {
 
   const slideVariants = {
     enter: (dir: string) => ({
-      x: dir === "next" ? 300 : -300,
+      x: dir === "next" ? 100 : -100,
       opacity: 0,
     }),
     center: {
@@ -114,7 +133,7 @@ const MobilePortfolio = () => {
       opacity: 1,
     },
     exit: (dir: string) => ({
-      x: dir === "next" ? -300 : 300,
+      x: dir === "next" ? -100 : 100,
       opacity: 0,
     }),
   };
@@ -174,6 +193,7 @@ const MobilePortfolio = () => {
                     sizes="90vw"
                     quality={90}
                     priority
+                    fetchPriority="high"
                     className={styles.previewImage}
                   />
                 ) : (
@@ -184,6 +204,7 @@ const MobilePortfolio = () => {
                     sizes="90vw"
                     quality={90}
                     priority
+                    fetchPriority="high"
                     className={styles.previewImage}
                   />
                 )}
@@ -257,6 +278,25 @@ const DesktopPortfolio = () => {
   useEffect(() => {
     // Reset loading state when project changes
     setIsEmbedLoading(true);
+    
+    // Preload next and previous project assets
+    const nextIndex = (currentIndex + 1) % projects.length;
+    const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
+    
+    [projects[nextIndex], projects[prevIndex]].forEach(project => {
+      if (project.videoPreview) {
+        const video = document.createElement('video');
+        video.src = project.videoPreview;
+        video.preload = 'auto';
+        video.load();
+      } else if (project.imageRender || project.thumbnail) {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = project.imageRender || project.thumbnail;
+        document.head.appendChild(link);
+      }
+    });
   }, [currentIndex]);
 
   const [direction, setDirection] = useState<"next" | "prev">("next");
@@ -279,7 +319,7 @@ const DesktopPortfolio = () => {
 
   const slideVariants = {
     enter: (dir: string) => ({
-      x: dir === "next" ? 1000 : -1000,
+      x: dir === "next" ? 200 : -200,
       opacity: 0,
     }),
     center: {
@@ -287,7 +327,7 @@ const DesktopPortfolio = () => {
       opacity: 1,
     },
     exit: (dir: string) => ({
-      x: dir === "next" ? -1000 : 1000,
+      x: dir === "next" ? -200 : 200,
       opacity: 0,
     }),
   };
@@ -347,6 +387,7 @@ const DesktopPortfolio = () => {
                     sizes="(max-width: 1200px) 50vw, 600px"
                     quality={90}
                     priority
+                    fetchPriority="high"
                     className={styles.previewImage}
                   />
                 ) : (
@@ -357,6 +398,7 @@ const DesktopPortfolio = () => {
                     sizes="(max-width: 1200px) 50vw, 600px"
                     quality={90}
                     priority
+                    fetchPriority="high"
                     className={styles.previewImage}
                   />
                 )}
@@ -445,9 +487,9 @@ const Portfolio = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -50 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
     >
       {isMobile ? <MobilePortfolio /> : <DesktopPortfolio />}

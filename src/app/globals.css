@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 :root {
@@ -45,6 +46,8 @@ html {
 }
 
 body {
+  overflow-x: hidden;
+  width: 100%;
   background-color: var(--bg-gradient-end);
   background-image: 
     /* Fine grid layer (closest) */ linear-gradient(

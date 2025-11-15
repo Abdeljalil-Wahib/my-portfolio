@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div>
+    <div style={{ overflowX: 'hidden', width: '100%' }}>
       <section id="home">
         <Hero />
       </section>
